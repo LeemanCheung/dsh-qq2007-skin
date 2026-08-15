@@ -10,7 +10,7 @@
 
 [中文](README.md) · [Architecture](docs/ARCHITECTURE.md) · [Art direction](assets/ART_DIRECTION.md) · [Compatibility](docs/COMPATIBILITY.md)
 
-[![CI](https://github.com/LeemanCheung/dsh-qq2007-skin/actions/workflows/ci.yml/badge.svg)](https://github.com/LeemanCheung/dsh-qq2007-skin/actions/workflows/ci.yml)
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com) [![CI](https://github.com/LeemanCheung/dsh-qq2007-skin/actions/workflows/ci.yml/badge.svg)](https://github.com/LeemanCheung/dsh-qq2007-skin/actions/workflows/ci.yml)
 ![license](https://img.shields.io/github/license/LeemanCheung/dsh-qq2007-skin)
 ![dsh](https://img.shields.io/badge/DSH-0.1.0--rc.6-1269bb)
 
