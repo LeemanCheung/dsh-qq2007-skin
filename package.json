@@ -1,7 +1,7 @@
 {
   "name": "dsh-qq2007-skin",
-  "version": "0.2.0",
-  "description": "QQ 2007-inspired retro messenger skin for the DeepSeek Harness Web GUI, with native theme tokens, Codex-generated original artwork, compact desktop chrome, and a reversible settings toggle.",
+  "version": "0.3.0",
+  "description": "QQ 2007-inspired retro messenger skin for the DeepSeek Harness Web GUI, with Codex-generated original artwork, compact desktop chrome, an account card, optional original send chime, and reversible settings.",
   "license": "MIT",
   "author": "LeemanCheung",
   "type": "module",

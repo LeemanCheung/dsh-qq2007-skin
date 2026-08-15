@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented here.
 
+## [0.3.0] - 2026-08-15
+
+### Added
+
+- Compact account-card treatment for the native sidebar logo row with the original robot avatar and factual local visual-state copy.
+- Optional original two-note send chime synthesized with Web Audio; it defaults off and carries no recorded sound asset.
+- Separate persisted sound toggle in Settings and a factual status-strip indicator while enabled.
+
+### Changed
+
+- Compressed project/session rows and emphasized native status slots, titles, and relative times.
+- Added compact local-user headings, always-visible native message clocks, transcript separators, and assistant-side rules.
+- Restyled the native submit control as a 64×27 glossy text-send button without replacing its behavior, disabled state, or accessible name.
+- Extended deterministic lifecycle coverage to send-action audio triggers, silent Shift+Enter, listener disposal, and AudioContext closure.
+- Manual Chromium release verification now includes the account card, text-send geometry, sound round trip, and 800/801 px responsive threshold.
+
 ## [0.2.0] - 2026-08-15
 
 ### Added

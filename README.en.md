@@ -17,19 +17,23 @@
 </div>
 
 > [!IMPORTANT]
-> This is an independent, unofficial nostalgia project. It is not affiliated with, authorized by, or endorsed by Tencent, QQ, or DeepSeek. It ships no QQ logos, mascot art, historical icons, sounds, or theme files. Its robot, chrome, toolbar, and wallpaper are original project assets. See [NOTICE](NOTICE.md).
+> This is an independent, unofficial nostalgia project. It is not affiliated with, authorized by, or endorsed by Tencent, QQ, or DeepSeek. It ships no QQ logos, mascot art, historical icons, historical sounds, or theme files. Its robot, chrome, toolbar, wallpaper, and optional synthesized chime are original project assets. See [NOTICE](NOTICE.md).
 
 ## Features
 
 - Genuine 2007 desktop-client texture: persistent blue application strip, XP highlight bands and 1px bevels, full-width contact groups, flatter transcript rows, rectangular composer, recessed scrollbars, and a bottom status bar.
+- Account-card treatment around the native DSH logo row: original robot avatar and factual “Local user · skin enabled” copy without replacing its session or collapse actions.
+- Denser contact rows and transcript hierarchy: native status/time metadata stays visible, with compact user headings, separators, and assistant-side rules instead of modern oversized bubbles.
+- Classic text-send chrome: preserves the native submit element, handler, disabled state, and accessible name while drawing a glossy 2007-style rectangle—without implying a nonexistent dropdown.
+- Optional original two-note action chime, off by default with one preview when enabled. It then synthesizes roughly 0.18 seconds after a native send click or when Enter moves the draft into submission. It is not delivery-success feedback and includes no historical recording or audio file.
 - Four original native Codex `gpt-image-2` assets: robot/CRT buddy, blue-glass chrome, eight generic retro toolbar icons, and room/sky wallpaper. Prompts and call provenance are committed; runtime use is fully offline.
 - Native three-pane mapping: DSH sidebar / conversation / details become contacts / messages / buddy details without duplicating business data.
 - 72 native `--dsw-*` tokens registered through the official `ctx.theme.register()` API.
 - Native sessions, model picker, attachments, send controls, tool cards, settings, and details behavior remain untouched.
-- Enabled on first install, with a reversible **Settings → General** switch that restores the previous built-in appearance.
-- The status strip reports only the local visual layer and browser clock; it invents no model, quota, connection, or agent state.
+- Enabled on first install, with independent reversible **Settings → General** appearance and sound switches; opted-in sound can remain active under system appearance.
+- The status strip reports only the local visual layer, optional sound state, and browser clock; it invents no model, quota, connection, or agent state.
 - Responsive layout plus reduced-motion and forced-colors fallbacks.
-- Stores only browser-local `on|off` and the previous built-in theme preference; reads no prompts, replies, sessions, files, or credentials.
+- Stores only browser-local appearance/sound flags and the previous built-in theme preference; copies, retains, and transmits no prompts, replies, sessions, files, or credentials. Sound only checks whether the native composer changed from non-empty to empty around Enter.
 
 The hero image is a real Chromium capture from an isolated DSH `0.1.0-rc.6` profile. Runtime versions of the four Codex-generated assets:
 
@@ -45,7 +49,7 @@ dsh web
 Pin the current release:
 
 ```sh
-dsh plugin --profile web add github:LeemanCheung/dsh-qq2007-skin#v0.2.0
+dsh plugin --profile web add github:LeemanCheung/dsh-qq2007-skin#v0.3.0
 ```
 
 From source:
@@ -64,11 +68,11 @@ dsh plugin --profile web update dsh-qq2007-skin
 dsh plugin --profile web remove dsh-qq2007-skin
 ```
 
-Restart `dsh web` after changing profile plugins. Stopping or removing the plugin disposes its theme registration, CSS, application/status DOM, timer, and settings entry.
+Restart `dsh web` after changing profile plugins. Stopping or removing the plugin disposes its theme registration, CSS, application/status DOM, timer, send listeners, optional AudioContext, and settings entry.
 
 ## How it works
 
-Unlike the CDP-based reference project [Codex-QQ2007-Skin](https://github.com/LeemanCheung/Codex-QQ2007-Skin), this plugin uses DSH's native Cordis browser-plugin, ThemeRuntime, and Settings Slot APIs. The host half is a no-op bundle entry; the browser half registers the palette, installs strictly scoped CSS, embeds four compact offline artworks plus the original SVG, tracks `theme/change`, and exposes a reversible settings switch.
+Unlike the CDP-based reference project [Codex-QQ2007-Skin](https://github.com/LeemanCheung/Codex-QQ2007-Skin), this plugin uses DSH's native Cordis browser-plugin, ThemeRuntime, and Settings Slot APIs. The host half is a no-op bundle entry; the browser half registers the palette, installs strictly scoped CSS, embeds four compact offline artworks plus the original SVG, tracks `theme/change`, and exposes reversible appearance and sound settings. The optional send chime uses two short Web Audio oscillators and carries no audio asset.
 
 See [Architecture](docs/ARCHITECTURE.md) and [Compatibility](docs/COMPATIBILITY.md).
 
@@ -79,7 +83,7 @@ npm test
 npm run pack:check
 ```
 
-The deterministic VM gate covers module registration, all 72 tokens, first-run activation, application/status DOM, all four embedded WebP assets, settings switches, local persistence, theme synchronization, and lifecycle cleanup. Release verification additionally performs a manual real-Chromium pass for shell geometry, Settings visibility, and the disable/re-enable cycle.
+The deterministic VM gate covers module registration, all 72 tokens, first-run activation, both settings, native-button and submitted-Enter chime triggers, silent Shift+Enter, all four embedded WebP assets, persistence, theme synchronization, listeners, and AudioContext cleanup. Manual real-Chromium release verification covers the account card, 64×27 text-send button, sound toggle, 800/801 px responsive threshold, and appearance disable/re-enable cycle.
 
 ## License
 

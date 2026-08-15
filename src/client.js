@@ -3,6 +3,7 @@ const React = require("react");
 const THEME_ID = "dsh-qq2007-retro";
 const STORAGE_KEY = "dsh-qq2007-skin:enabled";
 const PREVIOUS_THEME_KEY = "dsh-qq2007-skin:previous-theme";
+const SOUND_KEY = "dsh-qq2007-skin:sound";
 const BUILTIN_THEMES = new Set(["light", "dark", "system"]);
 const CSS = __QQ2007_CSS__;
 const BUDDY_URL = __QQ2007_BUDDY_URL__;
@@ -116,6 +117,20 @@ function writePreviousTheme(themeId) {
   } catch {}
 }
 
+function readSoundEnabled() {
+  try {
+    return window.localStorage.getItem(SOUND_KEY) === "on";
+  } catch {
+    return false;
+  }
+}
+
+function writeSoundEnabled(enabled) {
+  try {
+    window.localStorage.setItem(SOUND_KEY, enabled ? "on" : "off");
+  } catch {}
+}
+
 function createElement(tag, className, text) {
   const element = document.createElement(tag);
   if (className) element.className = className;
@@ -129,13 +144,30 @@ function formatClock(date) {
   return hh + ":" + mm;
 }
 
-function SettingsRow({ getEnabled, setEnabled, subscribe }) {
+function SettingsRow({
+  getEnabled, setEnabled, subscribe,
+  getSoundEnabled, setSoundEnabled, subscribeSound
+}) {
   const [enabled, setLocalEnabled] = React.useState(getEnabled());
+  const [soundEnabled, setLocalSoundEnabled] = React.useState(getSoundEnabled());
   React.useEffect(() => subscribe(setLocalEnabled), [subscribe]);
+  React.useEffect(() => subscribeSound(setLocalSoundEnabled), [subscribeSound]);
 
   const choose = (value) => {
     setEnabled(value);
     setLocalEnabled(value);
+  };
+  const chooseSound = (value) => {
+    setSoundEnabled(value);
+    setLocalSoundEnabled(value);
+  };
+  const rowStyle = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: "20px",
+    padding: "14px 0",
+    borderBottom: "1px solid var(--dsw-alias-border-l1)"
   };
   const baseButton = {
     minWidth: "92px",
@@ -154,43 +186,53 @@ function SettingsRow({ getEnabled, setEnabled, subscribe }) {
     color: "var(--dsw-alias-label-primary)",
     background: "var(--dsw-alias-button-elevated-fill)"
   });
+  const copyStyle = { marginTop: "4px", color: "var(--dsw-alias-label-tertiary)", fontSize: "12px", lineHeight: 1.5 };
 
-  return React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      gap: "20px",
-      padding: "14px 0",
-      borderBottom: "1px solid var(--dsw-alias-border-l1)"
-    }
-  },
-  React.createElement("div", { style: { minWidth: 0 } },
-    React.createElement("div", { style: { color: "var(--dsw-alias-label-primary)", fontWeight: 600 } }, "QQ 2007 复古皮肤"),
-    React.createElement("div", { style: { marginTop: "4px", color: "var(--dsw-alias-label-tertiary)", fontSize: "12px", lineHeight: 1.5 } }, "Codex 生图美术、XP 蓝色窗框、联系人列表与复古状态条；关闭后立即恢复系统外观。")
-  ),
-  React.createElement("div", { style: { display: "flex", gap: "8px", flexShrink: 0 } },
-    React.createElement("button", {
-      type: "button",
-      style: buttonStyle(enabled),
-      "aria-pressed": enabled,
-      onClick: () => choose(true)
-    }, "启用皮肤"),
-    React.createElement("button", {
-      type: "button",
-      style: buttonStyle(!enabled),
-      "aria-pressed": !enabled,
-      onClick: () => choose(false)
-    }, "系统外观")
-  ));
+  return React.createElement("div", null,
+    React.createElement("div", { style: rowStyle },
+      React.createElement("div", { style: { minWidth: 0 } },
+        React.createElement("div", { style: { color: "var(--dsw-alias-label-primary)", fontWeight: 600 } }, "QQ 2007 复古皮肤"),
+        React.createElement("div", { style: copyStyle }, "Codex 原创美术、XP 蓝色窗框、账号资料卡与复古状态栏；关闭后恢复切换前的系统外观。")
+      ),
+      React.createElement("div", { style: { display: "flex", gap: "8px", flexShrink: 0 } },
+        React.createElement("button", {
+          type: "button",
+          style: buttonStyle(enabled),
+          "aria-pressed": enabled,
+          onClick: () => choose(true)
+        }, "启用皮肤"),
+        React.createElement("button", {
+          type: "button",
+          style: buttonStyle(!enabled),
+          "aria-pressed": !enabled,
+          onClick: () => choose(false)
+        }, "系统外观")
+      )
+    ),
+    React.createElement("div", { style: rowStyle },
+      React.createElement("div", { style: { minWidth: 0 } },
+        React.createElement("div", { style: { color: "var(--dsw-alias-label-primary)", fontWeight: 600 } }, "原创双音发送提示"),
+        React.createElement("div", { style: copyStyle }, "默认关闭；开启时试听一次，之后为本地发送操作播放约 0.18 秒双音。它不是送达成功提示，也不包含 QQ 历史音效。")
+      ),
+      React.createElement("button", {
+        type: "button",
+        style: Object.assign({}, buttonStyle(soundEnabled), { minWidth: "112px" }),
+        "aria-pressed": soundEnabled,
+        onClick: () => chooseSound(!soundEnabled)
+      }, soundEnabled ? "提示音：开启" : "提示音：关闭")
+    )
+  );
 }
 
 function apply(ctx) {
   if (typeof document === "undefined" || typeof window === "undefined") return;
 
   const subscribers = new Set();
+  const soundSubscribers = new Set();
   const restoreOnBoot = readEnabled();
   let active = false;
+  let soundEnabled = readSoundEnabled();
+  let audioContext = null;
   let status = null;
   let windowbar = null;
   let previousTheme = readPreviousTheme();
@@ -207,6 +249,57 @@ function apply(ctx) {
   };
   const notify = () => {
     for (const subscriber of subscribers) subscriber(active);
+  };
+  const notifySound = () => {
+    for (const subscriber of soundSubscribers) subscriber(soundEnabled);
+  };
+  const getAudioContext = () => {
+    if (!soundEnabled || disposed) return null;
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (typeof AudioContext !== "function") return null;
+    try {
+      if (audioContext === null || audioContext.state === "closed") audioContext = new AudioContext();
+      if (audioContext.state === "suspended") {
+        void audioContext.resume().catch(() => {
+          // Autoplay policy rejection keeps the optional cue silent.
+        });
+      }
+      return audioContext;
+    } catch {
+      // Audio is optional; browser policy or unavailable hardware leaves the skin silent.
+      return null;
+    }
+  };
+  const playSendChime = () => {
+    const context = getAudioContext();
+    if (context === null) return;
+    try {
+      const now = context.currentTime;
+      const note = (frequency, delay, duration, peak) => {
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(frequency, now + delay);
+        gain.gain.setValueAtTime(0.0001, now + delay);
+        gain.gain.exponentialRampToValueAtTime(peak, now + delay + 0.008);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + delay + duration);
+        oscillator.connect(gain);
+        gain.connect(context.destination);
+        oscillator.start(now + delay);
+        oscillator.stop(now + delay + duration + 0.01);
+      };
+      note(659.25, 0, 0.075, 0.045);
+      note(880, 0.062, 0.105, 0.038);
+    } catch {
+      // Audio is optional; browser policy or unavailable hardware leaves the skin silent.
+    }
+  };
+  const setSoundEnabled = (next) => {
+    soundEnabled = next === true;
+    writeSoundEnabled(soundEnabled);
+    if (status) status.dataset.sound = soundEnabled ? "on" : "off";
+    notifySound();
+    if (soundEnabled) playSendChime();
   };
   const markActive = (next, persist = true) => {
     active = next === true;
@@ -280,6 +373,7 @@ function apply(ctx) {
 
     status = createElement("div", "", undefined);
     status.id = "dsh-qq2007-status";
+    status.dataset.sound = soundEnabled ? "on" : "off";
     status.setAttribute("role", "group");
     status.setAttribute("aria-label", "QQ 2007 retro skin controls");
 
@@ -291,6 +385,7 @@ function apply(ctx) {
     dot.setAttribute("aria-hidden", "true");
     const title = createElement("span", "dsh-qq2007-title", "DSH Messenger 2007");
     const state = createElement("span", "", "本地视觉层已启用");
+    const sound = createElement("span", "dsh-qq2007-sound", "双音发送提示");
     const spacer = createElement("span", "dsh-qq2007-spacer");
     const clock = createElement("time", "dsh-qq2007-clock");
     const close = createElement("button", "", "退出皮肤");
@@ -301,6 +396,7 @@ function apply(ctx) {
     status.appendChild(dot);
     status.appendChild(title);
     status.appendChild(state);
+    status.appendChild(sound);
     status.appendChild(spacer);
     status.appendChild(clock);
     status.appendChild(close);
@@ -313,13 +409,47 @@ function apply(ctx) {
     };
     const disable = () => setEnabled(false);
     updateClock();
+    const sendLabels = new Set(["发送消息", "Send message"]);
+    const onDocumentClick = (event) => {
+      const target = event.target;
+      if (!target || typeof target.closest !== "function") return;
+      const button = target.closest("button");
+      if (!button || button.disabled || !button.closest("[data-composer-card]")) return;
+      if (sendLabels.has(button.getAttribute("aria-label") || "")) playSendChime();
+    };
+    const onDocumentKeydown = (event) => {
+      const target = event.target;
+      if (event.key !== "Enter" || event.shiftKey || event.isComposing || !target) return;
+      if (target.tagName !== "TEXTAREA" || target.disabled || target.readOnly) return;
+      if (typeof target.closest !== "function" || !target.closest("[data-composer-card]")) return;
+      if (typeof target.value !== "string" || target.value.trim() === "") return;
+      getAudioContext();
+      window.setTimeout(() => {
+        if (target.value === "") playSendChime();
+      }, 0);
+    };
     const timer = window.setInterval(updateClock, 30000);
     close.addEventListener("click", disable);
+    document.addEventListener("click", onDocumentClick);
+    document.addEventListener("keydown", onDocumentKeydown);
     document.documentElement.setAttribute("data-dsh-qq2007-installed", "true");
 
     return () => {
       window.clearInterval(timer);
       close.removeEventListener("click", disable);
+      document.removeEventListener("click", onDocumentClick);
+      document.removeEventListener("keydown", onDocumentKeydown);
+      if (audioContext !== null) {
+        const closing = audioContext;
+        audioContext = null;
+        try {
+          void closing.close().catch(() => {
+            // A browser may already have closed the optional audio context.
+          });
+        } catch {
+          // A browser may throw synchronously for an already-closed context.
+        }
+      }
       style.remove();
       status.remove();
       windowbar.remove();
@@ -328,6 +458,7 @@ function apply(ctx) {
       document.body.removeAttribute("data-dsh-qq2007-active");
       document.documentElement.removeAttribute("data-dsh-qq2007-installed");
       subscribers.clear();
+      soundSubscribers.clear();
     };
   }, "dsh-qq2007-skin: scoped stylesheet and status strip");
 
@@ -378,6 +509,13 @@ function apply(ctx) {
         subscribers.add(subscriber);
         subscriber(active);
         return () => subscribers.delete(subscriber);
+      },
+      getSoundEnabled: () => soundEnabled,
+      setSoundEnabled,
+      subscribeSound: (subscriber) => {
+        soundSubscribers.add(subscriber);
+        subscriber(soundEnabled);
+        return () => soundSubscribers.delete(subscriber);
       }
     })
   }, SettingsRow));

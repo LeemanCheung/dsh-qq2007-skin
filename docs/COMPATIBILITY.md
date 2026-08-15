@@ -5,6 +5,7 @@
 - DeepSeek Harness `0.1.0-rc.6`
 - Node.js 20 or 22 for build/installation tooling
 - Modern Chromium, Firefox, or WebKit with CSS custom properties
+- Optional send audio requires Web Audio (`AudioContext`); unsupported or policy-blocked browsers remain silent without affecting the skin
 - The full chrome uses `:has()` and WebKit scrollbar selectors where supported; token colors and core layout remain usable without those enhancements
 
 ## Stable and best-effort layers
@@ -19,6 +20,7 @@
 - `forced-colors: active` removes cosmetic shadows and restores system-colored borders.
 - The injected application strip is `aria-hidden` and non-interactive. All injected visual DOM is outside the conversation control path; the only injected control is the labeled “退出皮肤” button.
 - Generated raster assets are embedded in `lib/client.js`; the skin makes no runtime image or network request.
+- The synthesized chime defaults off, has no audio asset, and closes its AudioContext when the plugin stops. Shift+Enter and drafts that remain in the composer stay silent; the cue marks a local send action, not delivery success.
 
 ## Recovery
 

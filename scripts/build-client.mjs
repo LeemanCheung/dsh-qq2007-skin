@@ -23,6 +23,8 @@ for (const [placeholder, filename] of artDefinitions) {
   const dataUrl = `data:image/webp;base64,${bytes.toString('base64')}`
   css = css.replaceAll(placeholder, dataUrl)
 }
+if (!css.includes('__QQ2007_BUDDY_URL__')) throw new Error('CSS buddy placeholder is missing')
+css = css.replaceAll('__QQ2007_BUDDY_URL__', buddyUrl)
 
 if (!source.includes('__QQ2007_CSS__') || !source.includes('__QQ2007_BUDDY_URL__')) {
   throw new Error('client source placeholders are missing')

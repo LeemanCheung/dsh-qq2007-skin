@@ -7,6 +7,7 @@ body[data-dsh-qq2007-active="true"] {
   background:
     linear-gradient(180deg, rgba(255,255,255,.20), transparent 96px),
     linear-gradient(135deg, #74aee0 0%, #3975b2 58%, #285c94 100%);
+  --dsh-qq2007-buddy-icon: url(__QQ2007_BUDDY_URL__);
   --dsh-qq2007-buddy-stage: url(__QQ2007_BUDDY_STAGE_URL__);
   --dsh-qq2007-chrome: url(__QQ2007_CHROME_URL__);
   --dsh-qq2007-toolbar: url(__QQ2007_TOOLBAR_URL__);
@@ -133,6 +134,63 @@ body[data-dsh-qq2007-active="true"] [class$="_sidebarCol"] {
   box-shadow: inset -1px 0 rgba(255,255,255,.72);
 }
 
+/* The native logo row becomes a compact account card without replacing its controls. */
+body[data-dsh-qq2007-active="true"] [class*="_logoRow"]:has([class*="_brand"]) {
+  position: relative;
+  height: 62px !important;
+  box-sizing: border-box;
+  margin: 2px 2px 6px !important;
+  padding: 6px 34px 6px 53px !important;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.8), rgba(180,220,250,.78)),
+    var(--dsh-qq2007-chrome) center / cover no-repeat;
+  border: 1px solid #5086b6;
+  border-radius: 2px;
+  box-shadow: inset 1px 1px #fff, inset -1px -1px rgba(23,85,139,.24);
+}
+
+body[data-dsh-qq2007-active="true"] [class*="_logoRow"]:has([class*="_brand"])::before {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 38px;
+  height: 38px;
+  content: "";
+  background: #eff9ff var(--dsh-qq2007-buddy-icon) center / 36px 36px no-repeat;
+  border: 1px solid #4e83b1;
+  border-radius: 2px;
+  box-shadow: inset 1px 1px #fff, 0 1px 2px rgba(15,66,110,.24);
+}
+
+body[data-dsh-qq2007-active="true"] [class*="_logoRow"]:has([class*="_brand"])::after {
+  position: absolute;
+  bottom: 7px;
+  left: 53px;
+  content: "本地用户 · 皮肤启用";
+  color: #37617f;
+  font: 10px/13px Tahoma, "Microsoft YaHei", sans-serif;
+  text-shadow: 0 1px #fff;
+  pointer-events: none;
+}
+
+body[data-dsh-qq2007-active="true"] [class*="_logoRow"]:has([class*="_brand"]) [class*="_brand"] {
+  align-self: flex-start;
+  min-height: 24px;
+  color: #074f8d;
+  filter: drop-shadow(0 1px #fff);
+}
+
+body[data-dsh-qq2007-active="true"] [class*="_logoRow"]:has([class*="_brand"]) [class*="_toggle"] {
+  position: absolute;
+  top: 5px;
+  right: 3px;
+  width: 26px;
+  height: 24px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+
 body[data-dsh-qq2007-active="true"] [class$="_centerCol"] {
   background: #f9fcff;
   border-inline: 1px solid rgba(255,255,255,.7);
@@ -216,6 +274,36 @@ body[data-dsh-qq2007-active="true"] :is([class*="_projectRow"], [class*="_sessio
   border-radius: 1px !important;
 }
 
+body[data-dsh-qq2007-active="true"] :is([class*="_projectRow"], [class*="_sessionRow"]) {
+  height: 27px !important;
+  font-size: 11px;
+}
+
+body[data-dsh-qq2007-active="true"] [class*="_sessionRow"] [class*="_slot"]:not(:empty) {
+  width: 14px;
+  height: 14px;
+  color: #116bb6;
+  background: linear-gradient(135deg, #fff, #bde8ff 48%, #56a7de 52%);
+  border: 1px solid #4d86b4;
+  border-radius: 2px;
+  box-shadow: inset 1px 1px #fff;
+}
+
+body[data-dsh-qq2007-active="true"] [class*="_sessionRow"] [class*="_title"] {
+  color: #143c5f;
+  font-size: 11px;
+  line-height: 18px;
+}
+
+body[data-dsh-qq2007-active="true"] [class*="_sessionRow"] [class*="_time"] {
+  padding: 0 3px;
+  color: #55758f;
+  background: rgba(255,255,255,.46);
+  border: 1px solid rgba(83,132,171,.25);
+  border-radius: 1px;
+  font: 10px/15px Tahoma, sans-serif;
+}
+
 body[data-dsh-qq2007-active="true"] :is([class*="_projectRow"], [class*="_sessionRow"], [role="treeitem"]):hover {
   background: linear-gradient(180deg, #fff, #d7ecff) !important;
   border-color: #7cadd5;
@@ -252,6 +340,53 @@ body[data-dsh-qq2007-active="true"] [data-conversation-scroll] [class*="_userSta
   box-shadow: inset 0 1px #fff !important;
 }
 
+/* Compact nickname and time hierarchy, using only native message metadata. */
+body[data-dsh-qq2007-active="true"] [data-conversation-scroll] [class*="_column"] {
+  gap: 9px !important;
+}
+
+body[data-dsh-qq2007-active="true"] [data-conversation-scroll] [class*="_flowItem"] {
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(93,145,184,.28);
+}
+
+body[data-dsh-qq2007-active="true"] [data-conversation-scroll] [class*="_flowItem"]:not(:has([class*="_userRow"])) {
+  padding-left: 8px;
+  border-left: 2px solid rgba(71,139,190,.45);
+}
+
+body[data-dsh-qq2007-active="true"] [class*="_userRow"]::before {
+  content: "本地用户";
+  color: #075eaa;
+  font: 700 11px/15px Tahoma, "Microsoft YaHei", sans-serif;
+  text-shadow: 0 1px #fff;
+}
+
+body[data-dsh-qq2007-active="true"] [data-time-hover-root] :is([class*="_timeStart"], [class*="_timeEnd"]) {
+  padding-inline: 5px !important;
+  color: #55758f !important;
+  font: 10px/18px Tahoma, sans-serif !important;
+  opacity: 1 !important;
+}
+
+body[data-dsh-qq2007-active="true"] [data-conversation-scroll] [class*="_actions"] {
+  height: 28px;
+  gap: 4px;
+}
+
+body[data-dsh-qq2007-active="true"] [data-conversation-scroll] [class*="_actions"] button {
+  width: 28px;
+  height: 28px;
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 2px !important;
+}
+
+body[data-dsh-qq2007-active="true"] [data-conversation-scroll] [class*="_actions"] button:hover {
+  background: linear-gradient(180deg, #fff, #d7ebfa) !important;
+  border-color: #76a2c5;
+}
+
 /* Rectangular editor with a generated period toolbar strip above the native controls. */
 body[data-dsh-qq2007-active="true"] [data-composer-card] {
   position: relative;
@@ -286,6 +421,41 @@ body[data-dsh-qq2007-active="true"] [data-composer-card] > * {
 
 body[data-dsh-qq2007-active="true"] [data-composer-card] :is(button, [role="button"]) {
   border-radius: 2px !important;
+}
+
+/* The native submit button keeps its behavior and accessible name; only its chrome becomes a classic text send control. */
+body[data-dsh-qq2007-active="true"] [data-composer-card] button:is([aria-label="发送消息"], [aria-label="Send message"]) {
+  position: relative;
+  width: 64px !important;
+  height: 27px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center !important;
+  padding: 0 10px !important;
+  color: #fff !important;
+  background: linear-gradient(180deg, #91d8ff 0%, #2a91dd 47%, #075dab 52%, #1678ca 100%) !important;
+  border: 1px solid #07467e !important;
+  border-radius: 2px !important;
+  box-shadow: inset 1px 1px rgba(255,255,255,.78), inset -1px -1px rgba(0,45,97,.38) !important;
+  font: 700 11px/25px Tahoma, "Microsoft YaHei", sans-serif;
+  text-shadow: 0 1px #074b8b;
+  transform: none !important;
+}
+
+body[data-dsh-qq2007-active="true"] [data-composer-card] button[aria-label="发送消息"]::before {
+  content: "发送";
+}
+
+body[data-dsh-qq2007-active="true"] [data-composer-card] button[aria-label="Send message"]::before {
+  content: "Send";
+}
+
+body[data-dsh-qq2007-active="true"] [data-composer-card] button:is([aria-label="发送消息"], [aria-label="Send message"]) svg {
+  display: none;
+}
+
+body[data-dsh-qq2007-active="true"] [data-composer-card] button:is([aria-label="发送消息"], [aria-label="Send message"]):hover:not(:disabled) {
+  background: linear-gradient(180deg, #b5e8ff 0%, #42a4e8 47%, #0868bb 52%, #248bd8 100%) !important;
 }
 
 body[data-dsh-qq2007-active="true"] :is(input, textarea, select) {
@@ -377,6 +547,22 @@ body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
   font-weight: 700;
 }
 
+#dsh-qq2007-status .dsh-qq2007-sound {
+  display: none;
+  padding-left: 6px;
+  border-left: 1px solid rgba(48,102,148,.32);
+  color: #35688f;
+}
+
+#dsh-qq2007-status[data-sound="on"] .dsh-qq2007-sound {
+  display: inline;
+}
+
+#dsh-qq2007-status[data-sound="on"] .dsh-qq2007-sound::before {
+  content: "♪ ";
+  color: #1672bd;
+}
+
 #dsh-qq2007-status .dsh-qq2007-spacer {
   flex: 1;
 }
@@ -450,6 +636,8 @@ body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
 @media (forced-colors: active) {
   body[data-dsh-qq2007-active="true"] [class$="_frame"],
   body[data-dsh-qq2007-active="true"] [data-composer-card],
+  body[data-dsh-qq2007-active="true"] [class*="_logoRow"]:has([class*="_brand"]),
+  body[data-dsh-qq2007-active="true"] [data-composer-card] button:is([aria-label="发送消息"], [aria-label="Send message"]),
   body[data-dsh-qq2007-active="true"] #dsh-qq2007-windowbar,
   body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
     border: 1px solid CanvasText !important;
