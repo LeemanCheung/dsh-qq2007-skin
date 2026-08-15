@@ -35,6 +35,14 @@
 - **可访问与响应式**：支持 `prefers-reduced-motion`、高对比色模式；窄屏自动撤掉额外窗框和装饰工具栏。
 - **隐私安全**：只在浏览器 `localStorage` 保存皮肤开关、提示音开关与切换前的系统主题偏好；不复制、留存或传输提示词、回复、会话、文件或凭据。提示音仅检查原生输入框在 Enter 前后是否由非空变为空。
 
+## 兼容性与恢复
+
+- 基线为 DSH `0.1.0-rc.6`、Node.js 20+ 和支持 CSS 自定义属性的现代 Chromium、Firefox 或 WebKit；可选提示音还需要可用的 Web Audio。浏览器不支持或阻止音频时，皮肤保持静音而不会影响聊天。
+- `dsh.bundle`、主题 token、`theme/change` 和通用设置 Slot 是稳定扩展点；用于细节装饰的 CSS-module 后缀选择器，以及完整窗框所用的 `:has()`/WebKit 滚动条样式属于 best-effort。DSH Shell 改版时，原生主题和设置开关仍会保留，但部分装饰可能需要更新。
+- 窄于 1180 px 时隐藏装饰标题图标；不超过 800 px 时移除额外窗框、边距、输入框装饰与状态条。`prefers-reduced-motion` 会停用伙伴动效并缩短过渡，`forced-colors` 则恢复系统边框。
+- 外观与提示音开关只存于当前浏览器的 `localStorage`：`dsh-qq2007-skin:enabled`、`dsh-qq2007-skin:sound` 和 `dsh-qq2007-skin:previous-theme`。需要恢复初始状态时，可清除这三个键；第三方自定义主题不会作为可恢复主题保存，恢复时仅回到此前的内置 `light`、`dark` 或 `system`。
+- 首选 **设置 → 通用 → QQ 2007 复古皮肤 → 系统外观** 恢复；设置页不可用时，卸载插件并重启 `dsh web` 即会移除全部主题注册、CSS、DOM 装饰、监听器、计时器和可选 AudioContext。
+
 上图为隔离 DSH `0.1.0-rc.6` profile 的真实 Chromium 截图。四份 Codex 生图资产的运行时版本：
 
 <table><tr><td width="36%"><img src="assets/runtime/retro-buddy-stage.webp" alt="原创蓝色机器人与 CRT"></td><td><img src="assets/runtime/blue-glass-chrome.webp" alt="原创蓝色玻璃窗框材质"><br><img src="assets/runtime/retro-toolbar-icons.webp" alt="八枚原创复古工具图标"><br><img src="assets/runtime/buddy-room-wallpaper.webp" alt="原创复古房间天空壁纸"></td></tr></table>

@@ -35,6 +35,14 @@
 - Responsive layout plus reduced-motion and forced-colors fallbacks.
 - Stores only browser-local appearance/sound flags and the previous built-in theme preference; copies, retains, and transmits no prompts, replies, sessions, files, or credentials. Sound only checks whether the native composer changed from non-empty to empty around Enter.
 
+## Compatibility and recovery
+
+- The baseline is DSH `0.1.0-rc.6`, Node.js 20+, and a modern Chromium, Firefox, or WebKit browser with CSS custom properties. The optional chime also needs Web Audio; an unsupported or policy-blocked browser remains silent without affecting chat.
+- `dsh.bundle`, theme tokens, `theme/change`, and the General Settings Slot are stable extension points. CSS-module suffix selectors, plus the full chrome's `:has()` and WebKit scrollbar styling, are best-effort: a DSH Shell redesign may reduce decorative fidelity while native theming and the settings switch keep working.
+- Below 1180 px the decorative title icon is hidden; at 800 px and below the extra chrome, margin, composer ornament, and status strip are removed. `prefers-reduced-motion` disables buddy motion and shortens transitions, while `forced-colors` restores system borders.
+- Appearance and sound preferences live only in this browser's `localStorage`: `dsh-qq2007-skin:enabled`, `dsh-qq2007-skin:sound`, and `dsh-qq2007-skin:previous-theme`. Clearing those keys resets the skin; a third-party custom theme cannot be restored byte-for-byte, so recovery returns only the prior built-in `light`, `dark`, or `system` choice.
+- Use **Settings → General → QQ 2007 Retro Skin → System appearance** first. If Settings cannot open, remove the plugin and restart `dsh web`; Cordis then removes every theme registration, stylesheet, DOM decoration, listener, timer, and optional AudioContext.
+
 The hero image is a real Chromium capture from an isolated DSH `0.1.0-rc.6` profile. Runtime versions of the four Codex-generated assets:
 
 <table><tr><td width="36%"><img src="assets/runtime/retro-buddy-stage.webp" alt="Original blue robot and CRT"></td><td><img src="assets/runtime/blue-glass-chrome.webp" alt="Original blue-glass chrome"><br><img src="assets/runtime/retro-toolbar-icons.webp" alt="Eight original retro toolbar icons"><br><img src="assets/runtime/buddy-room-wallpaper.webp" alt="Original room and sky wallpaper"></td></tr></table>
