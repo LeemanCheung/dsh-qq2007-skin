@@ -1,37 +1,133 @@
 /* Scoped visual layer: inactive installs do not alter the stock DSH UI. */
 html:has(body[data-dsh-qq2007-active="true"]) {
-  background: #3b70ab;
+  background: #2f639a;
 }
 
 body[data-dsh-qq2007-active="true"] {
   background:
-    radial-gradient(circle at 25% 0%, rgba(255, 255, 255, 0.45), transparent 28rem),
-    linear-gradient(145deg, #76addf, #315e96 72%);
+    linear-gradient(180deg, rgba(255,255,255,.20), transparent 96px),
+    linear-gradient(135deg, #74aee0 0%, #3975b2 58%, #285c94 100%);
+  --dsh-qq2007-buddy-stage: url(__QQ2007_BUDDY_STAGE_URL__);
+  --dsh-qq2007-chrome: url(__QQ2007_CHROME_URL__);
+  --dsh-qq2007-toolbar: url(__QQ2007_TOOLBAR_URL__);
+  --dsh-qq2007-wallpaper: url(__QQ2007_WALLPAPER_URL__);
   color-scheme: light;
   font-family: Tahoma, "Microsoft YaHei", "Segoe UI", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 body[data-dsh-qq2007-active="true"] ::selection {
   color: #fff;
-  background: #1668bd;
+  background: #1269bb;
+}
+
+/* Always-visible, decorative application chrome. It does not imitate native controls. */
+#dsh-qq2007-windowbar {
+  display: none;
+}
+
+body[data-dsh-qq2007-active="true"] #dsh-qq2007-windowbar {
+  position: fixed;
+  z-index: 9;
+  top: 4px;
+  right: 5px;
+  left: 5px;
+  height: 32px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  overflow: hidden;
+  padding: 2px 8px;
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.44), transparent 37%, rgba(0,52,121,.16) 54%, rgba(0,43,104,.34)),
+    var(--dsh-qq2007-chrome) center 44% / cover no-repeat,
+    #1674c7;
+  border: 1px solid #0a4788;
+  border-radius: 5px 5px 2px 2px;
+  box-shadow: inset 1px 1px rgba(255,255,255,.78), inset -1px -1px rgba(0,41,94,.48);
+  font: 12px/24px Tahoma, "Microsoft YaHei", sans-serif;
+  text-shadow: 0 1px 1px #064278;
+  pointer-events: none;
+}
+
+#dsh-qq2007-windowbar .dsh-qq2007-window-icon {
+  width: 25px;
+  height: 25px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 1px rgba(0,45,90,.45));
+}
+
+#dsh-qq2007-windowbar .dsh-qq2007-window-title {
+  font-weight: 700;
+  letter-spacing: .1px;
+}
+
+#dsh-qq2007-windowbar .dsh-qq2007-window-badge {
+  height: 16px;
+  padding: 0 5px;
+  color: #064477;
+  background: linear-gradient(180deg, #fff, #bce7ff);
+  border: 1px solid rgba(2,68,128,.7);
+  border-radius: 2px;
+  box-shadow: inset 1px 1px #fff;
+  font: 700 10px/15px Tahoma, sans-serif;
+  text-shadow: none;
+}
+
+#dsh-qq2007-windowbar .dsh-qq2007-window-signature {
+  min-width: 0;
+  overflow: hidden;
+  color: #e9f8ff;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#dsh-qq2007-windowbar .dsh-qq2007-window-spacer {
+  flex: 1;
+}
+
+#dsh-qq2007-windowbar .dsh-qq2007-quicktools {
+  width: 202px;
+  height: 25px;
+  flex: 0 0 auto;
+  opacity: .96;
+  background: var(--dsh-qq2007-toolbar) center / contain no-repeat;
+  filter: drop-shadow(0 1px rgba(0,35,82,.48));
+}
+
+#dsh-qq2007-windowbar .dsh-qq2007-pearls {
+  display: flex;
+  gap: 4px;
+  padding-left: 2px;
+}
+
+#dsh-qq2007-windowbar .dsh-qq2007-pearls > i {
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(0,54,111,.7);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff, #8ee3ff 48%, #1686d1 52%);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.3);
 }
 
 /* Three native DSH panes become the contact list, chat window and buddy pane. */
 body[data-dsh-qq2007-active="true"] [class$="_frame"] {
-  border: 1px solid #164d8d;
-  border-radius: 7px;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.68) inset,
-    0 10px 28px rgba(8, 35, 70, 0.38);
-  margin: 5px 5px 27px;
-  height: calc(100% - 32px) !important;
+  box-sizing: border-box;
+  height: calc(100% - 66px) !important;
+  margin: 39px 5px 27px;
   overflow: hidden;
+  border: 1px solid #164d8d;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.66) inset, 0 4px 12px rgba(8,35,70,.28);
 }
 
 body[data-dsh-qq2007-active="true"] [class$="_sidebarCol"] {
   background:
-    linear-gradient(rgba(255,255,255,.35), rgba(255,255,255,0) 84px),
+    linear-gradient(180deg, rgba(255,255,255,.36), transparent 58px),
+    var(--dsh-qq2007-chrome) 28% top / auto 86px no-repeat,
     linear-gradient(180deg, #d9edff 0%, #b9daf7 48%, #eaf6ff 100%) !important;
   border-right: 1px solid #477daf !important;
   box-shadow: inset -1px 0 rgba(255,255,255,.72);
@@ -43,18 +139,22 @@ body[data-dsh-qq2007-active="true"] [class$="_centerCol"] {
 }
 
 body[data-dsh-qq2007-active="true"] [class$="_detailsCol"] {
-  background: linear-gradient(180deg, #e4f3ff 0%, #c8e4fb 42%, #f4faff 100%) !important;
+  background:
+    linear-gradient(rgba(232,246,255,.82), rgba(205,230,249,.88)),
+    var(--dsh-qq2007-buddy-stage) center 54px / min(88%, 310px) auto no-repeat,
+    linear-gradient(180deg, #e4f3ff 0%, #c8e4fb 44%, #f4faff 100%) !important;
   border-left: 1px solid #6090bd !important;
   box-shadow: inset 1px 0 rgba(255,255,255,.65);
 }
 
-/* Conversation title bar: compact glossy blue chrome, without replacing controls. */
+/* Compact period title band: bright top edge, dark waist, square controls. */
 body[data-dsh-qq2007-active="true"] [class$="_header"]:has([class$="_titleRow"]) {
-  min-height: 46px;
-  padding: 7px 10px 0 12px !important;
+  min-height: 35px;
+  padding: 4px 8px 0 10px !important;
   background:
     linear-gradient(90deg, rgba(255,255,255,.18), transparent 32%),
-    linear-gradient(180deg, #7fc9ff 0%, #2c8ddd 46%, #0861b7 51%, #0d72c8 100%) !important;
+    var(--dsh-qq2007-chrome) center 38% / cover no-repeat,
+    linear-gradient(180deg, #7fc9ff 0%, #2c8ddd 47%, #0861b7 51%, #0d72c8 100%) !important;
   border-bottom: 1px solid #064b92 !important;
   box-shadow: inset 0 1px #d9f3ff, inset 0 -1px rgba(255,255,255,.22);
 }
@@ -65,116 +165,166 @@ body[data-dsh-qq2007-active="true"] [class$="_header"]:has([class$="_titleRow"])
 
 body[data-dsh-qq2007-active="true"] [class$="_header"]:has([class$="_titleRow"]) :is([class*="_crumb"], [class*="_tab"], button, svg) {
   color: #fff !important;
-  text-shadow: 0 1px 1px rgba(0, 42, 95, .75);
+  text-shadow: 0 1px 1px rgba(0,42,95,.75);
 }
 
 body[data-dsh-qq2007-active="true"] [class$="_header"]:has([class$="_titleRow"]) button {
+  min-height: 23px !important;
   border: 1px solid transparent !important;
-  border-radius: 3px !important;
+  border-radius: 2px !important;
 }
 
 body[data-dsh-qq2007-active="true"] [class$="_header"]:has([class$="_titleRow"]) button:hover {
-  background: linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.11)) !important;
-  border-color: rgba(255,255,255,.64) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.12)) !important;
+  border-color: rgba(255,255,255,.72) !important;
+  box-shadow: inset 1px 1px rgba(255,255,255,.24);
 }
 
-/* Sidebar = retro buddy/contact list. */
+/* Sidebar = dense buddy/contact list. */
 body[data-dsh-qq2007-active="true"] [class*="_newSession"] {
+  min-height: 30px !important;
   color: #fff !important;
-  background: linear-gradient(180deg, #8ed6ff 0%, #2389dc 48%, #0d66bc 52%, #177bcf 100%) !important;
-  border: 1px solid #0a4d92 !important;
-  border-radius: 4px !important;
-  box-shadow: inset 1px 1px rgba(255,255,255,.7), inset -1px -1px rgba(0,54,112,.35) !important;
+  background: linear-gradient(180deg, #9ce0ff 0%, #2d93df 47%, #075faf 52%, #177bcf 100%) !important;
+  border: 1px solid #08477f !important;
+  border-radius: 3px !important;
+  box-shadow: inset 1px 1px rgba(255,255,255,.78), inset -1px -1px rgba(0,54,112,.42) !important;
   font-weight: 700;
   text-shadow: 0 1px #07519b;
 }
 
 body[data-dsh-qq2007-active="true"] [class*="_sectionLabel"] {
-  color: #164f8d !important;
-  font-size: 12px !important;
+  display: block !important;
+  width: calc(100% - 8px);
+  min-height: 21px;
+  box-sizing: border-box;
+  margin: 3px 4px 2px !important;
+  padding: 2px 7px !important;
+  color: #104b82 !important;
+  background: linear-gradient(180deg, #f7fcff, #c7e3f8 52%, #afd2ec) !important;
+  border: 1px solid #7ca8ca;
+  border-radius: 1px !important;
+  box-shadow: inset 1px 1px #fff;
+  font-size: 11px !important;
   font-weight: 700 !important;
+  line-height: 15px;
   text-shadow: 0 1px #fff;
 }
 
-body[data-dsh-qq2007-active="true"] :is([class*="_projectRow"], [class*="_sessionRow"]) {
+body[data-dsh-qq2007-active="true"] :is([class*="_projectRow"], [class*="_sessionRow"], [role="treeitem"]) {
+  min-height: 27px;
   border: 1px solid transparent;
-  border-radius: 3px !important;
+  border-radius: 1px !important;
 }
 
-body[data-dsh-qq2007-active="true"] :is([class*="_projectRow"], [class*="_sessionRow"]):hover {
+body[data-dsh-qq2007-active="true"] :is([class*="_projectRow"], [class*="_sessionRow"], [role="treeitem"]):hover {
   background: linear-gradient(180deg, #fff, #d7ecff) !important;
   border-color: #7cadd5;
 }
 
-body[data-dsh-qq2007-active="true"] :is([class*="_projectRow"], [class*="_sessionRow"])[class*="_selected"] {
+body[data-dsh-qq2007-active="true"] :is([class*="_projectRow"], [class*="_sessionRow"], [role="treeitem"])[class*="_selected"],
+body[data-dsh-qq2007-active="true"] [role="treeitem"][aria-selected="true"] {
   color: #073e75 !important;
-  background: linear-gradient(180deg, #dff3ff, #94c9f3) !important;
+  background: linear-gradient(180deg, #e7f7ff, #9acdf2) !important;
   border-color: #4c8dc3;
-  box-shadow: inset 0 1px rgba(255,255,255,.85);
+  box-shadow: inset 0 1px rgba(255,255,255,.9);
 }
 
-/* Native message flow and composer keep their behavior; only surfaces change. */
+/* Transcript: white paper with faint generated room art, not modern floating bubbles. */
 body[data-dsh-qq2007-active="true"] [data-conversation-scroll] {
   background:
-    linear-gradient(rgba(255,255,255,.92), rgba(242,249,255,.94)),
-    repeating-linear-gradient(0deg, rgba(27,113,185,.035) 0 1px, transparent 1px 4px) !important;
+    linear-gradient(rgba(255,255,255,.74), rgba(242,249,255,.82)),
+    var(--dsh-qq2007-buddy-stage) right 22px bottom 20px / min(28vw, 300px) auto no-repeat,
+    var(--dsh-qq2007-wallpaper) center / cover no-repeat,
+    #fff !important;
+}
+
+body[data-dsh-qq2007-active="true"] [data-conversation-scroll] [class*="_bubble"] {
+  border-radius: 1px !important;
+  box-shadow: none !important;
 }
 
 body[data-dsh-qq2007-active="true"] [class*="_userRow"] [class*="_bubble"],
 body[data-dsh-qq2007-active="true"] [data-conversation-scroll] [class*="_userStack"] [class*="_bubble"] {
   color: #123653 !important;
-  background: linear-gradient(180deg, #eef9ff, #cfeaff) !important;
-  border: 1px solid #81b6df;
-  border-radius: 5px 5px 2px 5px !important;
-  box-shadow: inset 0 1px #fff, 0 1px 2px rgba(28,85,135,.12);
+  background: linear-gradient(180deg, rgba(241,250,255,.94), rgba(219,239,253,.94)) !important;
+  border: 1px solid #92bbd9;
+  border-radius: 2px !important;
+  box-shadow: inset 0 1px #fff !important;
 }
 
+/* Rectangular editor with a generated period toolbar strip above the native controls. */
 body[data-dsh-qq2007-active="true"] [data-composer-card] {
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 27px !important;
   background: linear-gradient(180deg, #fff, #eef7ff) !important;
-  border: 2px solid #5f96c8 !important;
-  border-radius: 5px !important;
-  box-shadow: inset 1px 1px #fff, inset -1px -1px #bfd5e8, 0 2px 5px rgba(20,72,118,.22) !important;
+  border: 1px solid #4f83b2 !important;
+  border-radius: 2px !important;
+  box-shadow: inset 1px 1px #fff, inset -1px -1px #bfd5e8, 0 1px 3px rgba(20,72,118,.18) !important;
+}
+
+body[data-dsh-qq2007-active="true"] [data-composer-card]::before {
+  position: absolute;
+  z-index: 0;
+  top: 2px;
+  right: 6px;
+  left: 6px;
+  height: 23px;
+  content: "";
+  opacity: .92;
+  background:
+    var(--dsh-qq2007-toolbar) left center / auto 21px no-repeat,
+    linear-gradient(180deg, #f8fcff, #d6e8f6);
+  border-bottom: 1px solid #9dbbd3;
+  pointer-events: none;
+}
+
+body[data-dsh-qq2007-active="true"] [data-composer-card] > * {
+  position: relative;
+  z-index: 1;
 }
 
 body[data-dsh-qq2007-active="true"] [data-composer-card] :is(button, [role="button"]) {
-  border-radius: 3px !important;
-}
-
-body[data-dsh-qq2007-active="true"] :is(input, textarea, select) {
   border-radius: 2px !important;
 }
 
-/* Retro bevels for ordinary controls, scoped away from title bar and icon-only chrome. */
+body[data-dsh-qq2007-active="true"] :is(input, textarea, select) {
+  border-radius: 1px !important;
+}
+
+/* Retro bevels for settings and dialogs, while native modal layers remain above this skin. */
 body[data-dsh-qq2007-active="true"] [class*="_settingsArea"] button,
 body[data-dsh-qq2007-active="true"] [role="dialog"] button {
-  box-shadow: inset 1px 1px rgba(255,255,255,.65), inset -1px -1px rgba(41,91,137,.12);
+  border-radius: 2px !important;
+  box-shadow: inset 1px 1px rgba(255,255,255,.68), inset -1px -1px rgba(41,91,137,.16);
 }
 
 body[data-dsh-qq2007-active="true"] [class*="_settingsArea"] {
   background: linear-gradient(180deg, #f7fcff, #e5f2fc) !important;
 }
 
-/* Classic compact scrollbars. */
+/* Period-correct recessed scrollbars: no modern floating thumb or striped track. */
 body[data-dsh-qq2007-active="true"] ::-webkit-scrollbar {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
 }
 
 body[data-dsh-qq2007-active="true"] ::-webkit-scrollbar-track {
-  background: repeating-linear-gradient(45deg, #e6f2fb 0 2px, #d6e8f7 2px 4px);
-  border: 1px solid #9ab8d2;
+  background: linear-gradient(90deg, #d5e8f6, #edf7ff 45%, #c8deef);
+  border: 1px solid #8eafc9;
+  box-shadow: inset 1px 1px rgba(70,111,148,.18);
 }
 
 body[data-dsh-qq2007-active="true"] ::-webkit-scrollbar-thumb {
   min-height: 22px;
-  background: linear-gradient(90deg, #dff3ff, #77b8e9 56%, #4892cd);
+  background: linear-gradient(90deg, #e9f8ff, #8ec5ec 48%, #4f98d0);
   border: 1px solid #3c78aa;
-  border-radius: 2px;
-  box-shadow: inset 1px 1px #fff;
+  border-radius: 1px;
+  box-shadow: inset 1px 1px #fff, inset -1px -1px rgba(24,81,129,.18);
 }
 
 body[data-dsh-qq2007-active="true"] ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #effaff, #8bc8f2 56%, #5aa5dd);
+  background: linear-gradient(90deg, #f5fcff, #a5d5f4 48%, #65a9dc);
 }
 
 /* Factual local visual-state strip. It does not invent model/session status. */
@@ -195,9 +345,11 @@ body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
   gap: 7px;
   padding: 1px 5px;
   color: #123f6c;
-  background: linear-gradient(180deg, #edf9ff, #b9d9f2);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.72), rgba(184,217,242,.88)),
+    var(--dsh-qq2007-chrome) center 72% / cover no-repeat;
   border: 1px solid #245f97;
-  border-radius: 2px;
+  border-radius: 1px;
   box-shadow: inset 1px 1px #fff;
   font: 11px/18px Tahoma, "Microsoft YaHei", sans-serif;
   pointer-events: none;
@@ -236,7 +388,7 @@ body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
   color: #174a7c;
   background: linear-gradient(180deg, #fff, #d3e7f7);
   border: 1px solid #628aae;
-  border-radius: 2px;
+  border-radius: 1px;
   box-shadow: inset 1px 1px #fff;
   font: 11px Tahoma, sans-serif;
   cursor: pointer;
@@ -253,13 +405,34 @@ body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
   50% { transform: translateY(-2px); }
 }
 
+@media (max-width: 1180px) {
+  #dsh-qq2007-windowbar .dsh-qq2007-quicktools {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  body[data-dsh-qq2007-active="true"] [data-conversation-scroll] {
+    background:
+      linear-gradient(rgba(255,255,255,.84), rgba(242,249,255,.90)),
+      var(--dsh-qq2007-wallpaper) center / cover no-repeat,
+      #fff !important;
+  }
+}
+
 @media (max-width: 800px) {
   body[data-dsh-qq2007-active="true"] [class$="_frame"] {
-    margin: 0;
     height: 100% !important;
+    margin: 0;
     border-radius: 0;
   }
-  body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
+  body[data-dsh-qq2007-active="true"] :is(#dsh-qq2007-windowbar, #dsh-qq2007-status) {
+    display: none;
+  }
+  body[data-dsh-qq2007-active="true"] [data-composer-card] {
+    padding-top: 0 !important;
+  }
+  body[data-dsh-qq2007-active="true"] [data-composer-card]::before {
     display: none;
   }
 }
@@ -269,7 +442,7 @@ body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
     animation: none;
   }
   body[data-dsh-qq2007-active="true"] * {
-    transition-duration: 0.01ms !important;
+    transition-duration: .01ms !important;
     animation-iteration-count: 1 !important;
   }
 }
@@ -277,8 +450,12 @@ body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
 @media (forced-colors: active) {
   body[data-dsh-qq2007-active="true"] [class$="_frame"],
   body[data-dsh-qq2007-active="true"] [data-composer-card],
+  body[data-dsh-qq2007-active="true"] #dsh-qq2007-windowbar,
   body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
     border: 1px solid CanvasText !important;
     box-shadow: none !important;
+  }
+  body[data-dsh-qq2007-active="true"] :is(#dsh-qq2007-windowbar, [data-conversation-scroll], [class$="_sidebarCol"], [class$="_detailsCol"]) {
+    background-image: none !important;
   }
 }

@@ -167,7 +167,7 @@ function SettingsRow({ getEnabled, setEnabled, subscribe }) {
   },
   React.createElement("div", { style: { minWidth: 0 } },
     React.createElement("div", { style: { color: "var(--dsw-alias-label-primary)", fontWeight: 600 } }, "QQ 2007 复古皮肤"),
-    React.createElement("div", { style: { marginTop: "4px", color: "var(--dsw-alias-label-tertiary)", fontSize: "12px", lineHeight: 1.5 } }, "蓝色窗框、联系人式侧栏、复古状态条；关闭后立即恢复系统外观。")
+    React.createElement("div", { style: { marginTop: "4px", color: "var(--dsw-alias-label-tertiary)", fontSize: "12px", lineHeight: 1.5 } }, "Codex 生图美术、XP 蓝色窗框、联系人列表与复古状态条；关闭后立即恢复系统外观。")
   ),
   React.createElement("div", { style: { display: "flex", gap: "8px", flexShrink: 0 } },
     React.createElement("button", {
@@ -192,6 +192,7 @@ function apply(ctx) {
   const restoreOnBoot = readEnabled();
   let active = false;
   let status = null;
+  let windowbar = null;
   let previousTheme = readPreviousTheme();
   let bootRestorePending = restoreOnBoot;
   let retryTimer = null;
@@ -244,11 +245,38 @@ function apply(ctx) {
     if (previousStyle) previousStyle.remove();
     const previousStatus = document.getElementById("dsh-qq2007-status");
     if (previousStatus) previousStatus.remove();
+    const previousWindowbar = document.getElementById("dsh-qq2007-windowbar");
+    if (previousWindowbar) previousWindowbar.remove();
 
     const style = document.createElement("style");
     style.dataset.plugin = "dsh-qq2007-skin";
     style.textContent = CSS;
     document.head.appendChild(style);
+
+    windowbar = createElement("div", "", undefined);
+    windowbar.id = "dsh-qq2007-windowbar";
+    windowbar.setAttribute("aria-hidden", "true");
+
+    const windowIcon = createElement("img", "dsh-qq2007-window-icon");
+    windowIcon.src = BUDDY_URL;
+    windowIcon.alt = "";
+    const windowTitle = createElement("span", "dsh-qq2007-window-title", "DSH Messenger");
+    const windowBadge = createElement("span", "dsh-qq2007-window-badge", "2007");
+    const windowSignature = createElement("span", "dsh-qq2007-window-signature", "与智能伙伴一起探索未至之境");
+    const windowSpacer = createElement("span", "dsh-qq2007-window-spacer");
+    const quicktools = createElement("span", "dsh-qq2007-quicktools");
+    const pearls = createElement("span", "dsh-qq2007-pearls");
+    pearls.appendChild(createElement("i"));
+    pearls.appendChild(createElement("i"));
+    pearls.appendChild(createElement("i"));
+    windowbar.appendChild(windowIcon);
+    windowbar.appendChild(windowTitle);
+    windowbar.appendChild(windowBadge);
+    windowbar.appendChild(windowSignature);
+    windowbar.appendChild(windowSpacer);
+    windowbar.appendChild(quicktools);
+    windowbar.appendChild(pearls);
+    document.body.appendChild(windowbar);
 
     status = createElement("div", "", undefined);
     status.id = "dsh-qq2007-status";
@@ -294,7 +322,9 @@ function apply(ctx) {
       close.removeEventListener("click", disable);
       style.remove();
       status.remove();
+      windowbar.remove();
       status = null;
+      windowbar = null;
       document.body.removeAttribute("data-dsh-qq2007-active");
       document.documentElement.removeAttribute("data-dsh-qq2007-installed");
       subscribers.clear();

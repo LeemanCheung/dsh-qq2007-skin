@@ -14,10 +14,11 @@
 
 ## Responsive and accessibility behavior
 
-- At widths up to 800 px, the window margin and bottom strip are removed so the mobile layout keeps the full viewport.
+- Below 1180 px, the decorative title-bar icon sprite is hidden; at widths up to 800 px, the extra title bar, window margin, composer ornament, and bottom strip are removed so the mobile layout keeps the full viewport.
 - `prefers-reduced-motion: reduce` disables the buddy motion and shortens decorative transitions.
 - `forced-colors: active` removes cosmetic shadows and restores system-colored borders.
-- All injected visual DOM is outside the conversation control path; the only injected control is the labeled “退出皮肤” button.
+- The injected application strip is `aria-hidden` and non-interactive. All injected visual DOM is outside the conversation control path; the only injected control is the labeled “退出皮肤” button.
+- Generated raster assets are embedded in `lib/client.js`; the skin makes no runtime image or network request.
 
 ## Recovery
 

@@ -1,7 +1,7 @@
 {
   "name": "dsh-qq2007-skin",
-  "version": "0.1.0",
-  "description": "QQ 2007-inspired retro messenger skin for the DeepSeek Harness Web GUI, with native theme tokens, blue window chrome, compact three-pane styling, an original pixel buddy, and a reversible settings toggle.",
+  "version": "0.2.0",
+  "description": "QQ 2007-inspired retro messenger skin for the DeepSeek Harness Web GUI, with native theme tokens, Codex-generated original artwork, compact desktop chrome, and a reversible settings toggle.",
   "license": "MIT",
   "author": "LeemanCheung",
   "type": "module",
@@ -12,7 +12,10 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "assets",
+    "assets/retro-buddy.svg",
+    "assets/runtime",
+    "assets/prompts",
+    "assets/ART_DIRECTION.md",
     "docs",
     "lib",
     "cordis.patch.yml",

@@ -4,3 +4,4 @@ node_modules/
 Thumbs.db
 artifacts/
 test-results/
+codex-imagegen-report.txt
