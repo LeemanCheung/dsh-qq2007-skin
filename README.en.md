@@ -40,7 +40,8 @@
 - The baseline is DSH `0.1.0-rc.6`, Node.js 20+, and a modern Chromium, Firefox, or WebKit browser with CSS custom properties. The optional chime also needs Web Audio; an unsupported or policy-blocked browser remains silent without affecting chat.
 - `dsh.bundle`, theme tokens, `theme/change`, and the General Settings Slot are stable extension points. CSS-module suffix selectors, plus the full chrome's `:has()` and WebKit scrollbar styling, are best-effort: a DSH Shell redesign may reduce decorative fidelity while native theming and the settings switch keep working.
 - Below 1180 px the decorative title icon is hidden; at 800 px and below the extra chrome, margin, composer ornament, and status strip are removed. `prefers-reduced-motion` disables buddy motion and shortens transitions, while `forced-colors` restores system borders.
-- Appearance and sound preferences live only in this browser's `localStorage`: `dsh-qq2007-skin:enabled`, `dsh-qq2007-skin:sound`, and `dsh-qq2007-skin:previous-theme`. Clearing those keys resets the skin; a third-party custom theme cannot be restored byte-for-byte, so recovery returns only the prior built-in `light`, `dark`, or `system` choice.
+- There is no YAML configuration. Appearance, sound, and the previous built-in theme live only in this browser's `localStorage`: `dsh-qq2007-skin:enabled`, `dsh-qq2007-skin:sound`, and `dsh-qq2007-skin:previous-theme`. Clearing site data restores first-install defaults (appearance on, sound off); a third-party custom theme cannot be restored byte-for-byte, so recovery returns only the prior built-in `light`, `dark`, or `system` choice.
+- The skin's own Settings and status-bar copy is currently Chinese. Click-to-chime recognizes only the native Chinese `发送消息` and English `Send message` accessible labels; in other UI locales an Enter submission can still sound after DSH clears a non-empty draft, but a button click may remain silent.
 - Use **Settings → General → QQ 2007 Retro Skin → System appearance** first. If Settings cannot open, remove the plugin and restart `dsh web`; Cordis then removes every theme registration, stylesheet, DOM decoration, listener, timer, and optional AudioContext.
 
 The hero image is a real Chromium capture from an isolated DSH `0.1.0-rc.6` profile. Runtime versions of the four Codex-generated assets:
@@ -92,6 +93,8 @@ npm run pack:check
 ```
 
 The deterministic VM gate covers module registration, all 72 tokens, first-run activation, both settings, native-button and submitted-Enter chime triggers, silent Shift+Enter, all four embedded WebP assets, persistence, theme synchronization, listeners, and AudioContext cleanup. Manual real-Chromium release verification covers the account card, 64×27 text-send button, sound toggle, 800/801 px responsive threshold, and appearance disable/re-enable cycle.
+
+Maintainers can rebuild the committed runtime WebP derivatives from the repository-only high-resolution sources with `python scripts/process-art.py` (Pillow 10+). The published package intentionally omits those sources and the helper; normal installation and `npm test` need neither Python nor network access.
 
 ## License
 

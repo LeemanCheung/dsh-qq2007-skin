@@ -40,7 +40,8 @@
 - 基线为 DSH `0.1.0-rc.6`、Node.js 20+ 和支持 CSS 自定义属性的现代 Chromium、Firefox 或 WebKit；可选提示音还需要可用的 Web Audio。浏览器不支持或阻止音频时，皮肤保持静音而不会影响聊天。
 - `dsh.bundle`、主题 token、`theme/change` 和通用设置 Slot 是稳定扩展点；用于细节装饰的 CSS-module 后缀选择器，以及完整窗框所用的 `:has()`/WebKit 滚动条样式属于 best-effort。DSH Shell 改版时，原生主题和设置开关仍会保留，但部分装饰可能需要更新。
 - 窄于 1180 px 时隐藏装饰标题图标；不超过 800 px 时移除额外窗框、边距、输入框装饰与状态条。`prefers-reduced-motion` 会停用伙伴动效并缩短过渡，`forced-colors` 则恢复系统边框。
-- 外观与提示音开关只存于当前浏览器的 `localStorage`：`dsh-qq2007-skin:enabled`、`dsh-qq2007-skin:sound` 和 `dsh-qq2007-skin:previous-theme`。需要恢复初始状态时，可清除这三个键；第三方自定义主题不会作为可恢复主题保存，恢复时仅回到此前的内置 `light`、`dark` 或 `system`。
+- 没有 YAML 配置项。外观、提示音和此前内置主题只存于当前浏览器的 `localStorage`：`dsh-qq2007-skin:enabled`、`dsh-qq2007-skin:sound` 和 `dsh-qq2007-skin:previous-theme`。清除站点数据会恢复首次安装默认值（外观开、声音关）；第三方自定义主题不会作为可恢复主题保存，恢复时仅回到此前的内置 `light`、`dark` 或 `system`。
+- 皮肤自有设置项和状态栏目前固定为中文。点击发送提示音只识别原生中文 `发送消息` 与英文 `Send message` 无障碍标签；其他界面语言下，Enter 提交仍会在 DSH 清空非空草稿后触发提示音，但按钮点击可能保持静音。
 - 首选 **设置 → 通用 → QQ 2007 复古皮肤 → 系统外观** 恢复；设置页不可用时，卸载插件并重启 `dsh web` 即会移除全部主题注册、CSS、DOM 装饰、监听器、计时器和可选 AudioContext。
 
 上图为隔离 DSH `0.1.0-rc.6` profile 的真实 Chromium 截图。四份 Codex 生图资产的运行时版本：
@@ -114,6 +115,8 @@ npm run pack:check # 检查发布包内容
 ```
 
 自动测试覆盖：客户端模块注册、72 个 token、首次启用、双设置开关、原生发送按钮/进入提交流程的 Enter 双音触发、Shift+Enter 静音、4 个内嵌 WebP、localStorage、主题同步、监听器和 AudioContext 清理。发布前另以真实 Chromium 手工回归资料卡、64×27 文字发送按钮、提示音开关、800/801 px 响应式阈值及外观关闭/重启用往返。
+
+维护者可通过 `python scripts/process-art.py`（需要 Pillow 10+）由仓库专用的高分辨率源图重新生成已提交的运行时 WebP 衍生素材。发布包会有意省略这些源图和辅助脚本；普通安装及 `npm test` 都不需要 Python 或网络。
 
 本地 profile 组合验证：
 
