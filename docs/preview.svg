@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">DSH QQ 2007 retro skin design preview</title>
+  <desc id="desc">A blue retro messenger window with contact sidebar, conversation, details panel and status bar.</desc>
+  <defs>
+    <linearGradient id="desk" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9bd4ff"/><stop offset="1" stop-color="#315f98"/></linearGradient>
+    <linearGradient id="titlebar" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8fd4ff"/><stop offset=".48" stop-color="#2e91df"/><stop offset=".52" stop-color="#0b63b8"/><stop offset="1" stop-color="#147dcc"/></linearGradient>
+    <linearGradient id="side" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#dff1ff"/><stop offset=".5" stop-color="#b7daf6"/><stop offset="1" stop-color="#eef8ff"/></linearGradient>
+    <linearGradient id="status" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f5fcff"/><stop offset="1" stop-color="#b8d9f2"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#092c55" flood-opacity=".42"/></filter>
+    <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M0 3.5h4" stroke="#2d79b8" stroke-opacity=".055"/></pattern>
+  </defs>
+  <rect width="1200" height="720" fill="url(#desk)"/>
+  <circle cx="210" cy="54" r="220" fill="#fff" opacity=".18"/>
+  <g filter="url(#shadow)">
+    <rect x="55" y="46" width="1090" height="626" rx="10" fill="#f8fcff" stroke="#164d8d" stroke-width="2"/>
+    <rect x="57" y="48" width="1086" height="64" rx="8" fill="url(#titlebar)"/>
+    <path d="M57 104h1086" stroke="#064b92" stroke-width="2"/>
+    <g fill="#fff" font-family="Tahoma, sans-serif">
+      <text x="87" y="82" font-size="22" font-weight="700">DSH Messenger 2007</text>
+      <text x="87" y="101" font-size="12" opacity=".88">native controls · retro visual layer</text>
+    </g>
+    <g transform="translate(1050 63)" fill="#dff3ff" stroke="#fff" stroke-opacity=".7"><rect width="24" height="22" rx="3"/><rect x="30" width="24" height="22" rx="3"/><rect x="60" width="24" height="22" rx="3" fill="#e7796f"/></g>
+
+    <rect x="57" y="112" width="250" height="526" fill="url(#side)"/>
+    <path d="M307 112v526M930 112v526" stroke="#5485af"/>
+    <rect x="71" y="132" width="222" height="40" rx="4" fill="#fff" stroke="#6d9bc2"/>
+    <circle cx="92" cy="152" r="10" fill="#61d24d" stroke="#2b7c20"/>
+    <text x="111" y="149" font-family="Tahoma, sans-serif" font-size="13" fill="#174a77" font-weight="700">Leeman · 在线</text>
+    <text x="111" y="164" font-family="Tahoma, sans-serif" font-size="10" fill="#67849c">正在使用复古视觉层</text>
+    <rect x="71" y="186" width="222" height="32" rx="4" fill="url(#titlebar)" stroke="#0b579e"/>
+    <text x="182" y="207" text-anchor="middle" fill="#fff" font-family="Tahoma, sans-serif" font-size="12" font-weight="700">＋ 新建会话</text>
+    <text x="75" y="244" fill="#17558d" font-family="Tahoma, sans-serif" font-size="12" font-weight="700">▼ 我的工作区 (3)</text>
+    <g font-family="Tahoma, sans-serif" font-size="12" fill="#2e4c65">
+      <rect x="69" y="258" width="226" height="42" rx="4" fill="#a8d3f3" stroke="#528fc1"/>
+      <circle cx="89" cy="279" r="7" fill="#61d24d" stroke="#2b7c20"/><text x="106" y="282">QQ 复古皮肤</text>
+      <circle cx="89" cy="326" r="7" fill="#61d24d" stroke="#2b7c20"/><text x="106" y="330">主题接口调研</text>
+      <circle cx="89" cy="372" r="7" fill="#d7b84b" stroke="#8b752b"/><text x="106" y="376">Awesome PR</text>
+    </g>
+    <rect x="57" y="112" width="250" height="526" fill="url(#scan)"/>
+
+    <rect x="307" y="112" width="623" height="526" fill="#fafdff"/>
+    <rect x="323" y="132" width="591" height="38" rx="4" fill="#e5f3ff" stroke="#8bb4d5"/>
+    <text x="344" y="157" fill="#123f6c" font-family="Tahoma, sans-serif" font-size="14" font-weight="700">dsh-qq2007-skin</text>
+    <text x="889" y="156" text-anchor="end" fill="#4f718e" font-family="Tahoma, sans-serif" font-size="11">Chat · Trajectory</text>
+    <g font-family="Tahoma, sans-serif">
+      <rect x="536" y="205" width="344" height="69" rx="7" fill="#d5edff" stroke="#80b4dc"/>
+      <text x="556" y="231" fill="#153d5c" font-size="13">参考 Codex-QQ2007-Skin，</text><text x="556" y="253" fill="#153d5c" font-size="13">为 DSH 做一套原生复古皮肤。</text>
+      <text x="344" y="316" fill="#12354f" font-size="13" font-weight="700">DSH 助手</text>
+      <text x="344" y="344" fill="#274c68" font-size="13">已注册 72 个官方主题 token，并保留原生交互。</text>
+      <rect x="344" y="366" width="510" height="104" rx="4" fill="#f2f8fc" stroke="#9ab8d2"/>
+      <rect x="344" y="366" width="510" height="25" rx="4" fill="#dcecf8"/>
+      <text x="358" y="383" fill="#365a76" font-size="11">✓ ThemeRuntime  ✓ 生命周期清理  ✓ reduced-motion</text>
+      <text x="358" y="416" fill="#365a76" font-size="12">npm test</text>
+      <text x="358" y="443" fill="#27803a" font-size="12">72 tokens · register-enable-disable-cleanup</text>
+    </g>
+    <rect x="328" y="534" width="581" height="78" rx="5" fill="#fff" stroke="#5f96c8" stroke-width="2"/>
+    <text x="347" y="563" fill="#8397a8" font-family="Tahoma, sans-serif" font-size="13">输入消息…</text>
+    <g transform="translate(790 578)"><rect width="100" height="25" rx="3" fill="url(#titlebar)" stroke="#0a4d92"/><text x="50" y="17" text-anchor="middle" fill="#fff" font-family="Tahoma, sans-serif" font-size="11" font-weight="700">发送</text></g>
+
+    <rect x="930" y="112" width="213" height="526" fill="url(#side)"/>
+    <text x="951" y="144" fill="#154f82" font-family="Tahoma, sans-serif" font-size="13" font-weight="700">AI 好友资料</text>
+    <g transform="translate(983 173)">
+      <path fill="#123f7b" d="M28 0h8v8h8v8h12v8h8v48h-8v8H8v-8H0V24h8v-8h20z"/>
+      <path fill="#77c7ff" d="M12 20h40v8h8v40h-8v8H12v-8H4V28h8z"/>
+      <rect x="16" y="34" width="32" height="24" fill="#eefaff"/>
+      <rect x="21" y="40" width="6" height="8" fill="#123f7b"/><rect x="37" y="40" width="6" height="8" fill="#123f7b"/><rect x="26" y="52" width="12" height="3" fill="#123f7b"/>
+    </g>
+    <text x="1037" y="280" text-anchor="middle" fill="#154f82" font-family="Tahoma, sans-serif" font-size="12" font-weight="700">Retro Buddy</text>
+    <text x="1037" y="301" text-anchor="middle" fill="#628199" font-family="Tahoma, sans-serif" font-size="10">原创像素伙伴 · 无第三方素材</text>
+    <rect x="951" y="328" width="171" height="1" fill="#8eb4d3"/>
+    <text x="951" y="358" fill="#416680" font-family="Tahoma, sans-serif" font-size="11">• 浏览器本地持久化</text>
+    <text x="951" y="382" fill="#416680" font-family="Tahoma, sans-serif" font-size="11">• 一键恢复系统外观</text>
+    <text x="951" y="406" fill="#416680" font-family="Tahoma, sans-serif" font-size="11">• 不修改 DSH 安装包</text>
+
+    <rect x="57" y="638" width="1086" height="32" rx="0 0 8 8" fill="url(#status)" stroke="#245f97"/>
+    <circle cx="83" cy="654" r="6" fill="#62d44f" stroke="#28781c"/>
+    <text x="99" y="658" fill="#123f6c" font-family="Tahoma, sans-serif" font-size="11" font-weight="700">DSH Messenger 2007</text>
+    <text x="242" y="658" fill="#456982" font-family="Tahoma, sans-serif" font-size="11">本地视觉层已启用</text>
+    <text x="1118" y="658" text-anchor="end" fill="#123f6c" font-family="Tahoma, sans-serif" font-size="11">20:07</text>
+  </g>
+  <text x="600" y="704" text-anchor="middle" fill="#eaf6ff" font-family="Tahoma, sans-serif" font-size="12">Design preview · Native DSH controls remain unchanged</text>
+</svg>

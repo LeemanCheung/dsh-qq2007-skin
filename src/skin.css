@@ -1,0 +1,284 @@
+/* Scoped visual layer: inactive installs do not alter the stock DSH UI. */
+html:has(body[data-dsh-qq2007-active="true"]) {
+  background: #3b70ab;
+}
+
+body[data-dsh-qq2007-active="true"] {
+  background:
+    radial-gradient(circle at 25% 0%, rgba(255, 255, 255, 0.45), transparent 28rem),
+    linear-gradient(145deg, #76addf, #315e96 72%);
+  color-scheme: light;
+  font-family: Tahoma, "Microsoft YaHei", "Segoe UI", sans-serif;
+  font-size: 13px;
+}
+
+body[data-dsh-qq2007-active="true"] ::selection {
+  color: #fff;
+  background: #1668bd;
+}
+
+/* Three native DSH panes become the contact list, chat window and buddy pane. */
+body[data-dsh-qq2007-active="true"] [class$="_frame"] {
+  border: 1px solid #164d8d;
+  border-radius: 7px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.68) inset,
+    0 10px 28px rgba(8, 35, 70, 0.38);
+  margin: 5px 5px 27px;
+  height: calc(100% - 32px) !important;
+  overflow: hidden;
+}
+
+body[data-dsh-qq2007-active="true"] [class$="_sidebarCol"] {
+  background:
+    linear-gradient(rgba(255,255,255,.35), rgba(255,255,255,0) 84px),
+    linear-gradient(180deg, #d9edff 0%, #b9daf7 48%, #eaf6ff 100%) !important;
+  border-right: 1px solid #477daf !important;
+  box-shadow: inset -1px 0 rgba(255,255,255,.72);
+}
+
+body[data-dsh-qq2007-active="true"] [class$="_centerCol"] {
+  background: #f9fcff;
+  border-inline: 1px solid rgba(255,255,255,.7);
+}
+
+body[data-dsh-qq2007-active="true"] [class$="_detailsCol"] {
+  background: linear-gradient(180deg, #e4f3ff 0%, #c8e4fb 42%, #f4faff 100%) !important;
+  border-left: 1px solid #6090bd !important;
+  box-shadow: inset 1px 0 rgba(255,255,255,.65);
+}
+
+/* Conversation title bar: compact glossy blue chrome, without replacing controls. */
+body[data-dsh-qq2007-active="true"] [class$="_header"]:has([class$="_titleRow"]) {
+  min-height: 46px;
+  padding: 7px 10px 0 12px !important;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.18), transparent 32%),
+    linear-gradient(180deg, #7fc9ff 0%, #2c8ddd 46%, #0861b7 51%, #0d72c8 100%) !important;
+  border-bottom: 1px solid #064b92 !important;
+  box-shadow: inset 0 1px #d9f3ff, inset 0 -1px rgba(255,255,255,.22);
+}
+
+body[data-dsh-qq2007-active="true"] [class$="_header"]:has([class$="_titleRow"])::after {
+  display: none !important;
+}
+
+body[data-dsh-qq2007-active="true"] [class$="_header"]:has([class$="_titleRow"]) :is([class*="_crumb"], [class*="_tab"], button, svg) {
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(0, 42, 95, .75);
+}
+
+body[data-dsh-qq2007-active="true"] [class$="_header"]:has([class$="_titleRow"]) button {
+  border: 1px solid transparent !important;
+  border-radius: 3px !important;
+}
+
+body[data-dsh-qq2007-active="true"] [class$="_header"]:has([class$="_titleRow"]) button:hover {
+  background: linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.11)) !important;
+  border-color: rgba(255,255,255,.64) !important;
+}
+
+/* Sidebar = retro buddy/contact list. */
+body[data-dsh-qq2007-active="true"] [class*="_newSession"] {
+  color: #fff !important;
+  background: linear-gradient(180deg, #8ed6ff 0%, #2389dc 48%, #0d66bc 52%, #177bcf 100%) !important;
+  border: 1px solid #0a4d92 !important;
+  border-radius: 4px !important;
+  box-shadow: inset 1px 1px rgba(255,255,255,.7), inset -1px -1px rgba(0,54,112,.35) !important;
+  font-weight: 700;
+  text-shadow: 0 1px #07519b;
+}
+
+body[data-dsh-qq2007-active="true"] [class*="_sectionLabel"] {
+  color: #164f8d !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px #fff;
+}
+
+body[data-dsh-qq2007-active="true"] :is([class*="_projectRow"], [class*="_sessionRow"]) {
+  border: 1px solid transparent;
+  border-radius: 3px !important;
+}
+
+body[data-dsh-qq2007-active="true"] :is([class*="_projectRow"], [class*="_sessionRow"]):hover {
+  background: linear-gradient(180deg, #fff, #d7ecff) !important;
+  border-color: #7cadd5;
+}
+
+body[data-dsh-qq2007-active="true"] :is([class*="_projectRow"], [class*="_sessionRow"])[class*="_selected"] {
+  color: #073e75 !important;
+  background: linear-gradient(180deg, #dff3ff, #94c9f3) !important;
+  border-color: #4c8dc3;
+  box-shadow: inset 0 1px rgba(255,255,255,.85);
+}
+
+/* Native message flow and composer keep their behavior; only surfaces change. */
+body[data-dsh-qq2007-active="true"] [data-conversation-scroll] {
+  background:
+    linear-gradient(rgba(255,255,255,.92), rgba(242,249,255,.94)),
+    repeating-linear-gradient(0deg, rgba(27,113,185,.035) 0 1px, transparent 1px 4px) !important;
+}
+
+body[data-dsh-qq2007-active="true"] [class*="_userRow"] [class*="_bubble"],
+body[data-dsh-qq2007-active="true"] [data-conversation-scroll] [class*="_userStack"] [class*="_bubble"] {
+  color: #123653 !important;
+  background: linear-gradient(180deg, #eef9ff, #cfeaff) !important;
+  border: 1px solid #81b6df;
+  border-radius: 5px 5px 2px 5px !important;
+  box-shadow: inset 0 1px #fff, 0 1px 2px rgba(28,85,135,.12);
+}
+
+body[data-dsh-qq2007-active="true"] [data-composer-card] {
+  background: linear-gradient(180deg, #fff, #eef7ff) !important;
+  border: 2px solid #5f96c8 !important;
+  border-radius: 5px !important;
+  box-shadow: inset 1px 1px #fff, inset -1px -1px #bfd5e8, 0 2px 5px rgba(20,72,118,.22) !important;
+}
+
+body[data-dsh-qq2007-active="true"] [data-composer-card] :is(button, [role="button"]) {
+  border-radius: 3px !important;
+}
+
+body[data-dsh-qq2007-active="true"] :is(input, textarea, select) {
+  border-radius: 2px !important;
+}
+
+/* Retro bevels for ordinary controls, scoped away from title bar and icon-only chrome. */
+body[data-dsh-qq2007-active="true"] [class*="_settingsArea"] button,
+body[data-dsh-qq2007-active="true"] [role="dialog"] button {
+  box-shadow: inset 1px 1px rgba(255,255,255,.65), inset -1px -1px rgba(41,91,137,.12);
+}
+
+body[data-dsh-qq2007-active="true"] [class*="_settingsArea"] {
+  background: linear-gradient(180deg, #f7fcff, #e5f2fc) !important;
+}
+
+/* Classic compact scrollbars. */
+body[data-dsh-qq2007-active="true"] ::-webkit-scrollbar {
+  width: 13px;
+  height: 13px;
+}
+
+body[data-dsh-qq2007-active="true"] ::-webkit-scrollbar-track {
+  background: repeating-linear-gradient(45deg, #e6f2fb 0 2px, #d6e8f7 2px 4px);
+  border: 1px solid #9ab8d2;
+}
+
+body[data-dsh-qq2007-active="true"] ::-webkit-scrollbar-thumb {
+  min-height: 22px;
+  background: linear-gradient(90deg, #dff3ff, #77b8e9 56%, #4892cd);
+  border: 1px solid #3c78aa;
+  border-radius: 2px;
+  box-shadow: inset 1px 1px #fff;
+}
+
+body[data-dsh-qq2007-active="true"] ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #effaff, #8bc8f2 56%, #5aa5dd);
+}
+
+/* Factual local visual-state strip. It does not invent model/session status. */
+#dsh-qq2007-status {
+  display: none;
+}
+
+body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
+  position: fixed;
+  z-index: 10;
+  right: 5px;
+  bottom: 4px;
+  left: 5px;
+  height: 22px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 1px 5px;
+  color: #123f6c;
+  background: linear-gradient(180deg, #edf9ff, #b9d9f2);
+  border: 1px solid #245f97;
+  border-radius: 2px;
+  box-shadow: inset 1px 1px #fff;
+  font: 11px/18px Tahoma, "Microsoft YaHei", sans-serif;
+  pointer-events: none;
+}
+
+#dsh-qq2007-status .dsh-qq2007-buddy {
+  width: 25px;
+  height: 25px;
+  margin-top: -8px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 1px 1px rgba(0,45,90,.3));
+  animation: dsh-qq2007-bob 2.6s steps(2, jump-none) infinite;
+}
+
+#dsh-qq2007-status .dsh-qq2007-dot {
+  width: 7px;
+  height: 7px;
+  border: 1px solid #28781c;
+  border-radius: 50%;
+  background: #64d34d;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.8), inset 0 1px #b9f6a8;
+}
+
+#dsh-qq2007-status .dsh-qq2007-title {
+  font-weight: 700;
+}
+
+#dsh-qq2007-status .dsh-qq2007-spacer {
+  flex: 1;
+}
+
+#dsh-qq2007-status button {
+  min-width: 20px;
+  height: 17px;
+  padding: 0 7px;
+  color: #174a7c;
+  background: linear-gradient(180deg, #fff, #d3e7f7);
+  border: 1px solid #628aae;
+  border-radius: 2px;
+  box-shadow: inset 1px 1px #fff;
+  font: 11px Tahoma, sans-serif;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+#dsh-qq2007-status button:hover {
+  background: linear-gradient(180deg, #fff, #bfe1fa);
+  border-color: #2c71aa;
+}
+
+@keyframes dsh-qq2007-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@media (max-width: 800px) {
+  body[data-dsh-qq2007-active="true"] [class$="_frame"] {
+    margin: 0;
+    height: 100% !important;
+    border-radius: 0;
+  }
+  body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #dsh-qq2007-status .dsh-qq2007-buddy {
+    animation: none;
+  }
+  body[data-dsh-qq2007-active="true"] * {
+    transition-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (forced-colors: active) {
+  body[data-dsh-qq2007-active="true"] [class$="_frame"],
+  body[data-dsh-qq2007-active="true"] [data-composer-card],
+  body[data-dsh-qq2007-active="true"] #dsh-qq2007-status {
+    border: 1px solid CanvasText !important;
+    box-shadow: none !important;
+  }
+}

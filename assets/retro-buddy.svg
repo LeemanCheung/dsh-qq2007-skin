@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Original retro pixel buddy</title>
+  <desc id="desc">A blue square-headed pixel assistant with an antenna and headset.</desc>
+  <defs>
+    <linearGradient id="shell" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dff5ff"/>
+      <stop offset="0.45" stop-color="#7ec8ff"/>
+      <stop offset="1" stop-color="#2778cf"/>
+    </linearGradient>
+  </defs>
+  <path fill="#123f7b" d="M44 5h8v8h-8zM52 9h8v8h-8z"/>
+  <path fill="#69c8ff" d="M56 5h8v8h-8z"/>
+  <path fill="#0b3971" d="M20 21h56v8h8v48h-8v8H20v-8h-8V29h8z"/>
+  <path fill="url(#shell)" d="M20 25h56v8h4v40h-8v8H24v-8h-8V33h4z"/>
+  <path fill="#eaf9ff" d="M28 37h40v28H28z"/>
+  <path fill="#b9e6ff" d="M32 61h32v4H32z"/>
+  <path fill="#123f7b" d="M34 43h8v10h-8zM54 43h8v10h-8zM40 57h16v4H40z"/>
+  <path fill="#fff" d="M35 44h3v4h-3zM55 44h3v4h-3z"/>
+  <path fill="#0b3971" d="M8 41h8v24H8zM80 41h8v24h-8zM4 45h4v16H4zM88 45h4v16h-4z"/>
+  <path fill="#7ec8ff" d="M9 45h7v16H9zM80 45h7v16h-7z"/>
+  <path fill="#0b3971" d="M24 81h16v8H24zM56 81h16v8H56z"/>
+  <path fill="#f7c843" d="M68 69h8v8h-8z"/>
+</svg>

@@ -1,0 +1,76 @@
+{
+  "name": "dsh-qq2007-skin",
+  "version": "0.1.0",
+  "description": "QQ 2007-inspired retro messenger skin for the DeepSeek Harness Web GUI, with native theme tokens, blue window chrome, compact three-pane styling, an original pixel buddy, and a reversible settings toggle.",
+  "license": "MIT",
+  "author": "LeemanCheung",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "assets",
+    "docs",
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "LICENSE",
+    "NOTICE.md"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "theme",
+    "skin",
+    "retro-ui",
+    "qq2007",
+    "web-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeemanCheung/dsh-qq2007-skin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LeemanCheung/dsh-qq2007-skin/issues"
+  },
+  "homepage": "https://github.com/LeemanCheung/dsh-qq2007-skin#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build-client.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "npm run build && npm run check",
+    "pack:check": "npm pack --dry-run"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-theme",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-settings-general"
+      ],
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-client-runtime": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-client-ui-theme": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-client-ui-settings": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-client-ui-settings-general": "^0.1.0-rc.6"
+  }
+}
