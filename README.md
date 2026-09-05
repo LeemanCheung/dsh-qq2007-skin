@@ -129,6 +129,8 @@ dsh --profile web --dump-config
 
 当前基线为 DSH `0.1.2-rc.1`。主题 token 和设置 Slot 属于官方扩展点；部分用于强化窗框细节的 CSS module 后缀选择器是 best-effort，DSH 大版本升级后可能需要跟随调整，但不会替换或破坏原生控件。详见 [兼容性说明](docs/COMPATIBILITY.md)。
 
+Windows 实际界面结果见 [DSH 0.1.2 验收记录](docs/WINDOWS_DSH_0.1.2_ACCEPTANCE.md)。
+
 ## 许可
 
 代码与原创素材采用 [MIT License](LICENSE)。商标与独立项目声明见 [NOTICE.md](NOTICE.md)。

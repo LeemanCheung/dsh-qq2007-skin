@@ -85,6 +85,8 @@ Unlike the CDP-based reference project [Codex-QQ2007-Skin](https://github.com/Le
 
 See [Architecture](docs/ARCHITECTURE.md) and [Compatibility](docs/COMPATIBILITY.md).
 
+See [Windows DSH 0.1.2 acceptance](docs/WINDOWS_DSH_0.1.2_ACCEPTANCE.md) for the verified installed-interface result.
+
 ## Develop and verify
 
 ```sh
