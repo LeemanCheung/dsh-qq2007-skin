@@ -72,7 +72,7 @@ const THEME = Object.freeze({
     "--dsw-alias-state-warn-secondary": "#e7a13d",
     "--dsw-alias-state-warn-tertiary": "#fff0d5",
     "--dsw-alias-toast-bg": "#174f7e",
-    "--dsw-alias-tooltip-bg": "#ffffdf",
+    "--dsw-alias-tooltip-bg": "#16466f",
     "--dsw-specific-bubble-highlight": "#b9ddfa",
     "--dsw-specific-bubble": "#d9edfd",
     "--dsw-specific-input-major": "#ffffff",

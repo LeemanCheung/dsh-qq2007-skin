@@ -22,6 +22,16 @@ body[data-dsh-qq2007-active="true"] ::selection {
   background: #1269bb;
 }
 
+/* DSH 0.1.2 tooltips use white fixed text; keep their background dark enough
+   even when this light skin is active. */
+body[data-dsh-qq2007-active="true"] [role="tooltip"] {
+  color: #fff !important;
+  background: #16466f !important;
+  border: 1px solid #082f50;
+  box-shadow: inset 1px 1px rgba(255,255,255,.18), 0 2px 5px rgba(7,35,60,.28) !important;
+  text-shadow: none !important;
+}
+
 /* Always-visible, decorative application chrome. It does not imitate native controls. */
 #dsh-qq2007-windowbar {
   display: none;

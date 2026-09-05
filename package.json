@@ -1,6 +1,6 @@
 {
   "name": "dsh-qq2007-skin",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "QQ 2007-inspired retro messenger skin for the DeepSeek Harness Web GUI, with Codex-generated original artwork, compact desktop chrome, an account card, optional original send chime, and reversible settings.",
   "license": "MIT",
   "author": "LeemanCheung",
@@ -59,7 +59,7 @@
     },
     "client": {
       "inject": [
-        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-renderer",
         "@deepseek-ai/dsh-client-ui-theme",
         "@deepseek-ai/dsh-client-ui-settings",
         "@deepseek-ai/dsh-client-ui-settings-general"
@@ -70,10 +70,10 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
-    "@deepseek-ai/cordis": "^4.0.1",
-    "@deepseek-ai/dsh-client-runtime": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-client-ui-theme": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-client-ui-settings": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-client-ui-settings-general": "^0.1.0-rc.6"
+    "@deepseek-ai/cordis": "^4.0.2",
+    "@deepseek-ai/dsh-client-ui-renderer": "^0.1.2-rc.1",
+    "@deepseek-ai/dsh-client-ui-theme": "^0.1.2-rc.1",
+    "@deepseek-ai/dsh-client-ui-settings": "^0.1.2-rc.1",
+    "@deepseek-ai/dsh-client-ui-settings-general": "^0.1.2-rc.1"
   }
 }

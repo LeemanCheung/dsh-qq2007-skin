@@ -12,7 +12,7 @@
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com) [![CI](https://github.com/LeemanCheung/dsh-qq2007-skin/actions/workflows/ci.yml/badge.svg)](https://github.com/LeemanCheung/dsh-qq2007-skin/actions/workflows/ci.yml)
 ![license](https://img.shields.io/github/license/LeemanCheung/dsh-qq2007-skin)
-![dsh](https://img.shields.io/badge/DSH-0.1.0--rc.6-1269bb)
+![dsh](https://img.shields.io/badge/DSH-0.1.2--rc.1-1269bb)
 
 </div>
 
@@ -37,7 +37,7 @@
 
 ## 兼容性与恢复
 
-- 基线为 DSH `0.1.0-rc.6`、Node.js 20+ 和支持 CSS 自定义属性的现代 Chromium、Firefox 或 WebKit；可选提示音还需要可用的 Web Audio。浏览器不支持或阻止音频时，皮肤保持静音而不会影响聊天。
+- 基线为 DSH `0.1.2-rc.1`、Node.js 20+ 和支持 CSS 自定义属性的现代 Chromium、Firefox 或 WebKit；可选提示音还需要可用的 Web Audio。浏览器不支持或阻止音频时，皮肤保持静音而不会影响聊天。
 - `dsh.bundle`、主题 token、`theme/change` 和通用设置 Slot 是稳定扩展点；用于细节装饰的 CSS-module 后缀选择器，以及完整窗框所用的 `:has()`/WebKit 滚动条样式属于 best-effort。DSH Shell 改版时，原生主题和设置开关仍会保留，但部分装饰可能需要更新。
 - 窄于 1180 px 时隐藏装饰标题图标；不超过 800 px 时移除额外窗框、边距、输入框装饰与状态条。`prefers-reduced-motion` 会停用伙伴动效并缩短过渡，`forced-colors` 则恢复系统边框。
 - 没有 YAML 配置项。外观、提示音和此前内置主题只存于当前浏览器的 `localStorage`：`dsh-qq2007-skin:enabled`、`dsh-qq2007-skin:sound` 和 `dsh-qq2007-skin:previous-theme`。清除站点数据会恢复首次安装默认值（外观开、声音关）；第三方自定义主题不会作为可恢复主题保存，恢复时仅回到此前的内置 `light`、`dark` 或 `system`。
@@ -65,7 +65,7 @@ dsh web
 ### 固定版本
 
 ```sh
-dsh plugin --profile web add github:LeemanCheung/dsh-qq2007-skin#v0.3.0
+dsh plugin --profile web add github:LeemanCheung/dsh-qq2007-skin#v0.3.1
 ```
 
 ### 从源码安装
@@ -127,7 +127,7 @@ dsh --profile web --dump-config
 
 ## 兼容性
 
-当前基线为 DSH `0.1.0-rc.6`。主题 token 和设置 Slot 属于官方扩展点；部分用于强化窗框细节的 CSS module 后缀选择器是 best-effort，DSH 大版本升级后可能需要跟随调整，但不会替换或破坏原生控件。详见 [兼容性说明](docs/COMPATIBILITY.md)。
+当前基线为 DSH `0.1.2-rc.1`。主题 token 和设置 Slot 属于官方扩展点；部分用于强化窗框细节的 CSS module 后缀选择器是 best-effort，DSH 大版本升级后可能需要跟随调整，但不会替换或破坏原生控件。详见 [兼容性说明](docs/COMPATIBILITY.md)。
 
 ## 许可
 

@@ -12,7 +12,7 @@
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com) [![CI](https://github.com/LeemanCheung/dsh-qq2007-skin/actions/workflows/ci.yml/badge.svg)](https://github.com/LeemanCheung/dsh-qq2007-skin/actions/workflows/ci.yml)
 ![license](https://img.shields.io/github/license/LeemanCheung/dsh-qq2007-skin)
-![dsh](https://img.shields.io/badge/DSH-0.1.0--rc.6-1269bb)
+![dsh](https://img.shields.io/badge/DSH-0.1.2--rc.1-1269bb)
 
 </div>
 
@@ -37,7 +37,7 @@
 
 ## Compatibility and recovery
 
-- The baseline is DSH `0.1.0-rc.6`, Node.js 20+, and a modern Chromium, Firefox, or WebKit browser with CSS custom properties. The optional chime also needs Web Audio; an unsupported or policy-blocked browser remains silent without affecting chat.
+- The baseline is DSH `0.1.2-rc.1`, Node.js 20+, and a modern Chromium, Firefox, or WebKit browser with CSS custom properties. The optional chime also needs Web Audio; an unsupported or policy-blocked browser remains silent without affecting chat.
 - `dsh.bundle`, theme tokens, `theme/change`, and the General Settings Slot are stable extension points. CSS-module suffix selectors, plus the full chrome's `:has()` and WebKit scrollbar styling, are best-effort: a DSH Shell redesign may reduce decorative fidelity while native theming and the settings switch keep working.
 - Below 1180 px the decorative title icon is hidden; at 800 px and below the extra chrome, margin, composer ornament, and status strip are removed. `prefers-reduced-motion` disables buddy motion and shortens transitions, while `forced-colors` restores system borders.
 - There is no YAML configuration. Appearance, sound, and the previous built-in theme live only in this browser's `localStorage`: `dsh-qq2007-skin:enabled`, `dsh-qq2007-skin:sound`, and `dsh-qq2007-skin:previous-theme`. Clearing site data restores first-install defaults (appearance on, sound off); a third-party custom theme cannot be restored byte-for-byte, so recovery returns only the prior built-in `light`, `dark`, or `system` choice.
@@ -58,7 +58,7 @@ dsh web
 Pin the current release:
 
 ```sh
-dsh plugin --profile web add github:LeemanCheung/dsh-qq2007-skin#v0.3.0
+dsh plugin --profile web add github:LeemanCheung/dsh-qq2007-skin#v0.3.1
 ```
 
 From source:

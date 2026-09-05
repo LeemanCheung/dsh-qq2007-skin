@@ -2,7 +2,7 @@
 
 ## Supported baseline
 
-- DeepSeek Harness `0.1.0-rc.6`
+- DeepSeek Harness `0.1.2-rc.1`
 - Node.js 20 or 22 for build/installation tooling
 - Modern Chromium, Firefox, or WebKit with CSS custom properties
 - Optional send audio requires Web Audio (`AudioContext`); unsupported or policy-blocked browsers remain silent without affecting the skin
@@ -10,7 +10,7 @@
 
 ## Stable and best-effort layers
 
-- **Stable:** `dsh.bundle`, `dsh.client`, `ctx.theme.register`, `ctx.theme.setTheme`, `theme/change`, `settings.general.item`, and documented `--dsw-*` tokens.
+- **Stable:** `dsh.bundle`, `dsh.client`, `ctx.theme.register`, `ctx.theme.setTheme`, `theme/change`, `settings.general.item`, the UI renderer slot registry, and documented `--dsw-*` tokens.
 - **Best effort:** hashed CSS-module suffix selectors such as `[class$="_sidebarCol"]` and `[class*="_sessionRow"]`. A DSH UI refactor can reduce decorative fidelity, but the native token palette and settings switch continue to work.
 
 ## Responsive and accessibility behavior

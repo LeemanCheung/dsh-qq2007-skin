@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented here.
 
+## [0.3.1] - 2026-09-05
+
+### Fixed
+
+- Migrated the Client injection graph from the removed Runtime package to the DSH 0.1.2 UI renderer.
+- Restored readable tooltips by pairing their fixed white text with a dark blue background.
+
+### Changed
+
+- Updated the declared DSH and Cordis compatibility baseline to `0.1.2-rc.1` and `4.0.2`.
+
 ## [0.3.0] - 2026-08-15
 
 ### Added

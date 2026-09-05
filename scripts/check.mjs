@@ -156,6 +156,19 @@ assert.equal(typeof plugin.apply, 'function')
 assert.equal(plugin.THEME_ID, 'dsh-qq2007-retro')
 assert.equal(plugin.THEME.colorScheme, 'light')
 assert.ok(Object.keys(plugin.THEME.tokens).length >= 50)
+const channel = (value) => {
+  const normalized = value / 255
+  return normalized <= 0.04045 ? normalized / 12.92 : ((normalized + 0.055) / 1.055) ** 2.4
+}
+const luminance = (hex) => {
+  const value = Number.parseInt(hex.slice(1), 16)
+  return 0.2126 * channel(value >> 16) + 0.7152 * channel((value >> 8) & 255) + 0.0722 * channel(value & 255)
+}
+const contrast = (left, right) => {
+  const values = [luminance(left), luminance(right)].sort((a, b) => b - a)
+  return (values[0] + 0.05) / (values[1] + 0.05)
+}
+assert.ok(contrast('#ffffff', plugin.THEME.tokens['--dsw-alias-tooltip-bg']) >= 4.5)
 
 let registeredTheme
 let disposedTheme = false
@@ -211,6 +224,8 @@ assert.ok(style?.textContent.includes('dsh-qq2007-windowbar'))
 assert.ok(style?.textContent.includes('本地用户 · 皮肤启用'))
 assert.ok(style?.textContent.includes('[aria-label="发送消息"]'))
 assert.ok(style?.textContent.includes('width: 64px !important'))
+assert.ok(style?.textContent.includes('[role="tooltip"]'))
+assert.ok(style?.textContent.includes('background: #16466f !important'))
 assert.ok(!style?.textContent.includes('content: "▾"'), 'send chrome must not imply a nonexistent dropdown')
 assert.ok(!source.includes('__QQ2007_'))
 assert.ok((source.match(/data:image\/webp;base64,/g) ?? []).length >= 4)
@@ -297,9 +312,11 @@ assert.equal(body.getAttribute('data-dsh-qq2007-active'), null)
 assert.equal(documentListeners.size, 0)
 assert.equal(audioClosed, true)
 
-assert.equal(pkg.version, '0.3.0')
+assert.equal(pkg.version, '0.3.1')
 assert.equal(pkg.dsh.bundle.patch, './cordis.patch.yml')
 assert.equal(pkg.dsh.client.platform, 'web')
+assert.ok(pkg.dsh.client.inject.includes('@deepseek-ai/dsh-client-ui-renderer'))
+assert.ok(!pkg.dsh.client.inject.includes('@deepseek-ai/dsh-client-runtime'))
 assert.ok(pkg.keywords.includes('dsh-plugin'))
 assert.ok(patch.includes("name: 'dsh-qq2007-skin'"))
 
