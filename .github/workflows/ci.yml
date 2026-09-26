@@ -21,4 +21,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm test
+      - name: Verify committed build artifacts
+        shell: bash
+        run: |
+          git diff --exit-code HEAD -- lib
+          test -z "$(git ls-files --others -- lib)"
       - run: npm run pack:check

@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here.
 
+## [Unreleased]
+
+### Fixed
+
+- Normalize source line endings before embedding CSS so Windows and Linux builds produce identical client bundles.
+- Check LF/CRLF build reproducibility and reject uncommitted build artifacts in CI.
+- Pin installation examples to an existing commit while the source version's release tag is unavailable.
+
 ## [0.3.1] - 2026-09-05
 
 ### Fixed
