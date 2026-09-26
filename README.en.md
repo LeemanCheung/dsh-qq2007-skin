@@ -94,7 +94,7 @@ npm test
 npm run pack:check
 ```
 
-`npm test` builds LF and CRLF source copies in separate temporary directories and compares the resulting bundle bytes. CI also rejects changes to tracked files or new files in `lib/` after the build, so stale committed artifacts cannot pass validation.
+`npm test` builds LF and CRLF copies of the JavaScript, CSS, and SVG text in separate temporary directories and compares the resulting bundle bytes. CI also rejects changes from HEAD or any new files in `lib/`, including ignored files, so stale committed artifacts cannot pass validation.
 
 The deterministic VM gate covers module registration, all 72 tokens, first-run activation, both settings, native-button and submitted-Enter chime triggers, silent Shift+Enter, all four embedded WebP assets, persistence, theme synchronization, listeners, and AudioContext cleanup. Manual real-Chromium release verification covers the account card, 64×27 text-send button, sound toggle, 800/801 px responsive threshold, and appearance disable/re-enable cycle.
 

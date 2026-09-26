@@ -116,7 +116,7 @@ npm test           # 确定性构建 + VM 生命周期测试
 npm run pack:check # 检查发布包内容
 ```
 
-`npm test` 会在两个隔离目录中分别用 LF 与 CRLF 源文件构建，并比较 bundle 字节。CI 还会在构建后检查 `lib/` 的已跟踪文件差异和新增文件，防止源码更新后漏交发布产物。
+`npm test` 会在两个隔离目录中分别用 LF 与 CRLF 的 JavaScript、CSS 和 SVG 文本构建，并比较 bundle 字节。CI 还会在构建后检查 `lib/` 相对 HEAD 的已跟踪文件差异及全部新增文件（包括被忽略的文件），防止源码更新后漏交发布产物。
 
 自动测试覆盖：客户端模块注册、72 个 token、首次启用、双设置开关、原生发送按钮/进入提交流程的 Enter 双音触发、Shift+Enter 静音、4 个内嵌 WebP、localStorage、主题同步、监听器和 AudioContext 清理。发布前另以真实 Chromium 手工回归资料卡、64×27 文字发送按钮、提示音开关、800/801 px 响应式阈值及外观关闭/重启用往返。
 

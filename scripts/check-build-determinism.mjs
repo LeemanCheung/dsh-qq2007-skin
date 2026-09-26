@@ -11,12 +11,12 @@ try {
   const outputs = []
   for (const [name, newline] of [['lf', '\n'], ['crlf', '\r\n']]) {
     const fixture = join(temporary, name)
-    for (const directory of ['src', 'scripts', 'lib']) {
+    for (const directory of ['src', 'scripts', 'lib', 'assets']) {
       await mkdir(join(fixture, directory), { recursive: true })
     }
-    await cp(join(root, 'assets'), join(fixture, 'assets'), { recursive: true })
+    await cp(join(root, 'assets/runtime'), join(fixture, 'assets/runtime'), { recursive: true })
     await cp(join(root, 'scripts/build-client.mjs'), join(fixture, 'scripts/build-client.mjs'))
-    for (const path of ['src/client.js', 'src/skin.css']) {
+    for (const path of ['src/client.js', 'src/skin.css', 'assets/retro-buddy.svg']) {
       const content = (await readFile(join(root, path), 'utf8')).replace(/\r\n?/g, '\n')
       await writeFile(join(fixture, path), content.replaceAll('\n', newline))
     }

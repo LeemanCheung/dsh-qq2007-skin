@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const source = (await readFile(resolve(root, 'src/client.js'), 'utf8')).replace(/\r\n?/g, '\n')
 const sourceCss = (await readFile(resolve(root, 'src/skin.css'), 'utf8')).replace(/\r\n?/g, '\n')
-const buddy = await readFile(resolve(root, 'assets/retro-buddy.svg'))
+const buddy = Buffer.from((await readFile(resolve(root, 'assets/retro-buddy.svg'), 'utf8')).replace(/\r\n?/g, '\n'))
 const buddyUrl = `data:image/svg+xml;base64,${buddy.toString('base64')}`
 
 const artDefinitions = [
