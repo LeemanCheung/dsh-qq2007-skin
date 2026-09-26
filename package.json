@@ -50,7 +50,8 @@
   "scripts": {
     "build": "node scripts/build-client.mjs",
     "check": "node scripts/check.mjs",
-    "test": "npm run build && npm run check",
+    "test": "npm run check:build && npm run build && npm run check",
+    "check:build": "node scripts/check-build-determinism.mjs",
     "pack:check": "npm pack --dry-run"
   },
   "dsh": {

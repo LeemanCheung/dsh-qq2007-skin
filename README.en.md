@@ -55,10 +55,10 @@ dsh plugin --profile web add github:LeemanCheung/dsh-qq2007-skin
 dsh web
 ```
 
-Pin the current release:
+The source version is `0.3.1`; its release tag has not been published. Pin this existing commit to install the tooltip fix:
 
 ```sh
-dsh plugin --profile web add github:LeemanCheung/dsh-qq2007-skin#v0.3.1
+dsh plugin --profile web add github:LeemanCheung/dsh-qq2007-skin#537edbb672fc0eea8412252cb6a0ed7d661479cb
 ```
 
 From source:
@@ -93,6 +93,8 @@ See [Windows DSH 0.1.2 acceptance](docs/WINDOWS_DSH_0.1.2_ACCEPTANCE.md) for the
 npm test
 npm run pack:check
 ```
+
+`npm test` builds LF and CRLF source copies in separate temporary directories and compares the resulting bundle bytes. CI also rejects changes to tracked files or new files in `lib/` after the build, so stale committed artifacts cannot pass validation.
 
 The deterministic VM gate covers module registration, all 72 tokens, first-run activation, both settings, native-button and submitted-Enter chime triggers, silent Shift+Enter, all four embedded WebP assets, persistence, theme synchronization, listeners, and AudioContext cleanup. Manual real-Chromium release verification covers the account card, 64×27 text-send button, sound toggle, 800/801 px responsive threshold, and appearance disable/re-enable cycle.
 
